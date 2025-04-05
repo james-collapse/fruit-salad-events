@@ -21,7 +21,7 @@ t key =
         PartnershipDescription ->
             -- Note this is also in content/about/main.md
             -- If they should remain in sync, we should remove from there
-            "The Trans Dimension is an online community hub connecting trans communities in London and Manchester. We collate news, events and services by and for trans people."
+            "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 
         SiteLogoSrc ->
             canonicalUrl ++ "images/logos/site_logo_on_primary_background.png"
@@ -143,7 +143,7 @@ t key =
             "An online community hub which will connect trans communities across the UK by collating news, events and services by and for trans people in one easy-to-reach place. A collaboration between Gendered Intelligence and Geeks for Social Change."
 
         IndexIntroTitle ->
-            "Trusted, accessible, trans-friendly spaces. Always expanding."
+            "Queer events from the community"
 
         IndexIntroMessage ->
             t PartnershipDescription
