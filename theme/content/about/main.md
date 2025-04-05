@@ -1,12 +1,13 @@
 ---
 title: "About"
-subtitle: "The Trans Dimension is an online community hub connecting trans communities in London and Manchester. We collate news, events and services by and for trans people."
+subtitle: "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 ---
 
-We see and experience the barriers in place for trans, non-binary, and gender diverse people trying to meet, connect, and socialise and know that for disabled trans people the challenge is even harder. Our goal is to support and facilitate community connections through safe spaces and networks across the UK.
+We are a collective of independent LGBTQIA+ event organisers based in London, we create events where queer folk can connect in person and through FSEC we support each other in providing these spaces for people to meet.
 
-At its core, The Trans Dimension is a digital partnership built on real-life trust networks. We’re not here to play accessibility cop or judge and jury, we just want to increase access to trans-led and trans-friendly spaces for all of us.
+The events we provide are always for the LGBTQIA+ community - and always trans-inclusive - including where a more specific demographic is stated e.g. sapphic.
 
-The Trans Dimension is run by Geeks for Social Change in partnership with Gendered Intelligence with support from the Comic Relief Tech for Good programme.
+The Fruit Salad events collective is run by an action group of FSEC members - who are event organisers or community members happy to lend a hand. 
 
-At this stage, the Trans Dimension is operating in London and Manchester. If you think you can help us roll it out in your area, please [get in touch](mailto:info@transdimension.uk).
+If you put on events that fit our vision please get in touch to join the collective, either as an active member, or just to benefit from cross promotion and a community of other organisers!
+

@@ -13,15 +13,15 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "The Trans Dimension"
+            "Fruit Salad Events London"
 
         SiteStrapline ->
-            "Space and spaces for us"
+            "Queer events for the community"
 
         PartnershipDescription ->
             -- Note this is also in content/about/main.md
             -- If they should remain in sync, we should remove from there
-            "The Trans Dimension is an online community hub connecting trans communities in London and Manchester. We collate news, events and services by and for trans people."
+            "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 
         SiteLogoSrc ->
             canonicalUrl ++ "images/logos/site_logo_on_primary_background.png"
@@ -60,7 +60,7 @@ t key =
 
         --- Footer
         FooterSocial ->
-            "Follow us out there"
+            "Find us on social media"
 
         FooterInstaLink ->
             "https://www.instagram.com/genderedintelligence/"
@@ -140,10 +140,10 @@ t key =
             "Home"
 
         IndexMetaDescription ->
-            "An online community hub which will connect trans communities across the UK by collating news, events and services by and for trans people in one easy-to-reach place. A collaboration between Gendered Intelligence and Geeks for Social Change."
+            "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 
         IndexIntroTitle ->
-            "Trusted, accessible, trans-friendly spaces. Always expanding."
+            "Queer events from the community"
 
         IndexIntroMessage ->
             t PartnershipDescription
@@ -175,10 +175,10 @@ t key =
             "Events"
 
         EventsMetaDescription ->
-            "Events and activities by and for trans communities across the UK."
+            "Upcoming events from our collective"
 
         EventsSummary ->
-            "Upcoming events & activities for you."
+            "Upcoming events from our collective"
 
         EventsSubHeading ->
             "Upcoming events"
@@ -233,19 +233,19 @@ t key =
             "Partners"
 
         PartnersMetaDescription ->
-            "Trans Dimension partners form an online community for connecting trans people across the UK by publishing service information, events and news on PlaceCal."
+            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for community platform and support."
 
         PartnersIntroSummary ->
-            "The Trans Dimension is a partnership of grassroots groups and charities with a track record of supporting the trans community."
+            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for community platform and support."
 
         PartnersIntroDescription ->
-            "All of our partners are explicitly trans-friendly organisations. Some are led by trans people, and some led by friends and allies. They put on events, provide services and offer support for members of our community."
+            "Collective members can actively shape the collective - if you put on similar events - get in touch to join!"
 
         PartnersListHeading ->
             "All partners"
 
         PartnersListEmpty ->
-            "There are currently no Trans Dimension partners"
+            "There are currently no Fruit Salad Events partners"
 
         PartnersMapAltText ->
             "A map showing the locations of all partners with listed addresses"
@@ -289,13 +289,13 @@ t key =
             "Join us"
 
         JoinUsSubtitle ->
-            "Want to be listed on The Trans Dimension?"
+            "Want to be listed on Fruit Salad Events?"
 
         JoinUsMetaDescription ->
-            "Want to be listed on The Trans Dimension? Get in touch and learn how you can create space and spaces for us."
+            "Want to be listed on Fruit Salad Events? Get in touch to join the collective, either as an active member, or just to benefit from cross promotion and a community of other organisers."
 
         JoinUsDescription ->
-            "Get in touch and learn how you can create space and spaces for us."
+            "Get in touch to join the collective, either as an active member, or just to benefit from cross promotion and a community of other organisers."
 
         JoinUsFormInputNameLabel ->
             "Name"
@@ -366,7 +366,7 @@ t key =
             "Privacy"
 
         PrivacyMetaDescription ->
-            "Privacy information for The Trans Dimension website."
+            "Privacy information for the Fruit Salad Events website."
 
         --- 404 Page
         ErrorTitle ->
