@@ -1,7 +1,7 @@
 module Theme.GlobalLayout exposing (backButtonStyle, backgroundColorTransition, baseButtonStyle, borderTransition, buttonFloatingWrapperStyle, colorTransition, containerPage, contentContainerStyle, mapImage, mapImageMulti, maxMobile, maxTabletPortrait, screenReaderOnly, withMediaCanHover, withMediaMediumDesktopUp, withMediaMobileOnly, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 
 import Color
-import Css exposing (Color, Style, absolute, active, alignItems, auto, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderColor, borderRadius, borderStyle, borderWidth, bottom, boxSizing, calc, center, color, cursor, display, displayFlex, em, firstChild, fitContent, flexDirection, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hex, hidden, hover, inlineBlock, int, italic, justifyContent, left, letterSpacing, lineHeight, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxContent, maxWidth, minus, none, outline, overflow, padding, padding2, padding4, paddingBottom, paddingLeft, paddingRight, pct, pointer, position, property, px, relative, rem, repeat, row, sansSerif, solid, textAlign, textDecoration, textTransform, top, uppercase, url, width, zero)
+import Css exposing (Color, Style, absolute, active, alignItems, auto, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderColor, borderRadius, borderStyle, borderWidth, bottom, boxSizing, calc, center, color, cursor, display, displayFlex, em, firstChild, fitContent, flexDirection, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hex, hidden, hover, inlineBlock, int, italic, justifyContent, left, letterSpacing, lineHeight, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxContent, maxWidth, minus, none, outline, overflow, padding, padding2, padding4, paddingBottom, paddingLeft, paddingRight, pct, pointer, position, property, px, relative, rem, repeat, row, sansSerif, serif, solid, textAlign, textDecoration, textTransform, top, uppercase, url, width, zero)
 import Css.Global exposing (adjacentSiblings, descendants, global, typeSelector)
 import Css.Media as Media exposing (fine, only, screen, withMedia)
 import Css.Transitions exposing (Transition, linear, transition)
@@ -105,7 +105,8 @@ baseButtonStyle =
         [ textDecoration none
         , padding4 (rem 0.375) (rem 1.25) (rem 0.5) (rem 1.25)
         , borderRadius (rem 0.3)
-        , fontWeight (int 600)
+        , fontFamilies [ "cooper-black-std", .value serif ]
+        , fontWeight (int 400)
         , fontSize (rem 1.2)
         , display block
         , textAlign center

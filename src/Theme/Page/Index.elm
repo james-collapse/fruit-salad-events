@@ -2,7 +2,7 @@ module Theme.Page.Index exposing (view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, absolute, after, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderRadius, bottom, calc, center, color, display, em, fontSize, fontStyle, fontWeight, height, important, inlineBlock, int, italic, lineHeight, margin2, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, none, padding2, padding4, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, property, px, relative, rem, textAlign, top, url, vw, width, zIndex)
+import Css exposing (Style, absolute, after, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderRadius, bottom, calc, center, color, display, em, fontFamilies, fontSize, fontStyle, fontWeight, height, important, inlineBlock, int, italic, lineHeight, margin2, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, none, normal, padding2, padding4, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, property, px, relative, rem, sansSerif, serif, textAlign, top, url, vw, width, zIndex)
 import Data.PlaceCal.Articles
 import Data.PlaceCal.Events
 import Data.PlaceCal.Partners
@@ -206,10 +206,11 @@ sectionSubtitleStyle =
         [ padding2 (rem 0.5) (rem 1)
         , marginBottom (rem 1)
         , textAlign center
-        , fontStyle italic
+        , fontFamilies [ "cooper-black-std", .value serif ]
+        , fontStyle normal
         , fontSize (rem 2.1)
         , lineHeight (em 1.1)
-        , fontWeight (int 500)
+        , fontWeight (int 400)
         , color colorPrimary
         , withMediaSmallDesktopUp
             [ margin2 (rem 0.5) (rem 1) ]
@@ -225,7 +226,10 @@ sectionSubtitleStyle =
 sectionTextStyle : Style
 sectionTextStyle =
     batch
-        [ textAlign center
+        [ fontFamilies [ "Satoshi", .value sansSerif ]
+        , fontStyle italic
+        , fontWeight (int 500)
+        , textAlign center
         , color colorPrimary
         , withMediaSmallDesktopUp
             [ margin2 (rem 2) (rem 8) ]
@@ -240,31 +244,6 @@ introSectionStyle : Style
 introSectionStyle =
     batch
         [ marginTop (px 430)
-        , before
-            [ backgroundImage (url "/images/illustrations/320px/homepage_1_header.png")
-            , height (px 626)
-            , top (px -550)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/homepage_1_header.png")
-                , height (px 1306)
-                , top (px -1100)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/homepage_1_header.png")
-                , height (px 1142)
-                , top (px -850)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/homepage_1_header.png")
-                , height (px 792)
-                , top (px -650)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/homepage_1_header.png")
-                , height (px 960)
-                , top (px -900)
-                ]
-            ]
         , withMediaMediumDesktopUp [ marginTop (px 1000) ]
         , withMediaSmallDesktopUp [ marginTop (px 750) ]
         , withMediaTabletLandscapeUp [ marginTop (px 550) ]
@@ -277,51 +256,7 @@ introSectionStyle =
 eventsSectionStyle : Style
 eventsSectionStyle =
     batch
-        [ marginTop (px 250)
-        , before
-            [ backgroundImage (url "/images/illustrations/320px/homepage_3.png")
-            , height (px 240)
-            , top (px -250)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/homepage_3.png")
-                , height (px 250)
-                , top (px -220)
-                , important (marginLeft (calc (vw -50) minus (px -575)))
-                , important (marginRight (calc (vw -50) minus (px -575)))
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/homepage_3.png")
-                , height (px 200)
-                , important (marginLeft (rem -7))
-                , important (marginRight (rem -7))
-                , top (px -200)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/homepage_3.png")
-                , height (px 280)
-                , top (px -230)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/homepage_3.png")
-                , height (px 200)
-                , top (px -195)
-                ]
-            ]
-        , withMediaMediumDesktopUp
-            [ important (maxWidth (px 1150))
-            , important (marginLeft auto)
-            , important (marginRight auto)
-            , marginTop (px 220)
-            ]
-        , withMediaSmallDesktopUp
-            [ important (marginLeft (rem 0))
-            , important (marginRight (rem 0))
-            ]
-        , withMediaTabletLandscapeUp
-            [ marginTop (px 150) ]
-        , withMediaTabletPortraitUp
-            [ marginTop (px 175) ]
-        ]
+        [ marginTop (px 125) ]
 
 
 newsSectionStyle : Style
@@ -329,73 +264,6 @@ newsSectionStyle =
     batch
         [ marginTop (px 240)
         , marginBottom (px 240)
-        , before
-            [ backgroundImage (url "/images/illustrations/320px/homepage_4.png")
-            , height (px 240)
-            , top (px -240)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/homepage_4.png")
-                , height (px 250)
-                , top (px -250)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/homepage_4.png")
-                , height (px 237)
-                , top (px -200)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/homepage_4.png")
-                , height (px 280)
-                , top (px -230)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/homepage_4.png")
-                , height (px 200)
-                , top (px -195)
-                ]
-            ]
-        , after
-            [ backgroundImage (url "/images/illustrations/320px/homepage_5.png")
-            , property "content" "\"\""
-            , display block
-            , width (vw 100)
-            , backgroundSize (px 420)
-            , backgroundPosition center
-            , position absolute
-            , zIndex (int -1)
-            , backgroundRepeat noRepeat
-            , margin2 (rem 0) (rem -1.75)
-            , bottom (px -270)
-            , height (px 240)
-            , withMediaMediumDesktopUp
-                [ backgroundSize (px 1920)
-                , backgroundImage (url "/images/illustrations/1920px/homepage_5.png")
-                , margin2 (rem 0) (calc (vw -50) minus (px -475))
-                , height (px 250)
-                , bottom (px -210)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundSize (px 1366)
-                , margin2 (rem 0) (rem -14)
-                , backgroundImage (url "/images/illustrations/1366px/homepage_5.png")
-                , height (px 237)
-                , bottom (px -200)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundSize (px 1200)
-                , margin2 (rem 0) (rem -6)
-                , backgroundImage (url "/images/illustrations/1024px/homepage_5.png")
-                , height (px 280)
-                , bottom (px -220)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/homepage_5.png")
-                , backgroundSize (px 900)
-                , height (px 200)
-                , bottom (px -195)
-                , margin2 (rem 0) (rem -2.5)
-                ]
-            ]
         , withMediaMediumDesktopUp
             [ marginBottom (px 230), marginTop (px 220) ]
         , withMediaSmallDesktopUp

@@ -2,7 +2,7 @@ module Theme.Page.Events exposing (Msg(..), fromPaginatorMsg, fromRegionSelector
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, backgroundColor, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, calc, center, color, column, display, displayFlex, em, firstChild, flexDirection, flexGrow, flexWrap, fontSize, fontStyle, fontWeight, hover, important, int, italic, justifyContent, lastChild, letterSpacing, lineHeight, margin, margin2, marginBlockEnd, marginBlockStart, marginBottom, marginRight, marginTop, maxWidth, minus, none, padding4, paddingBottom, pct, px, rem, row, rowReverse, solid, spaceBetween, textDecoration, textTransform, uppercase, width, wrap)
+import Css exposing (Style, alignItems, backgroundColor, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, calc, center, color, column, display, displayFlex, em, firstChild, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, important, int, italic, justifyContent, lastChild, letterSpacing, lineHeight, margin, margin2, marginBlockEnd, marginBlockStart, marginBottom, marginRight, marginTop, maxWidth, minus, none, padding4, paddingBottom, pct, px, rem, row, rowReverse, serif, solid, spaceBetween, textDecoration, textTransform, uppercase, width, wrap)
 import Css.Global exposing (descendants, typeSelector)
 import Css.Transitions exposing (transition)
 import Data.PlaceCal.Events
@@ -234,6 +234,7 @@ eventDayStyle : Style
 eventDayStyle =
     batch
         [ color colorWhite
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 2.5)
         , display block
         , lineHeight (em 1)
@@ -247,6 +248,7 @@ eventMonthStyle =
     batch
         [ color colorSecondary
         , textTransform uppercase
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.2)
         , fontWeight (int 900)
         , letterSpacing (px 1.9)
@@ -257,14 +259,15 @@ eventMonthStyle =
 eventDescriptionStyle : Style
 eventDescriptionStyle =
     batch
-        [ flexGrow (int 1) ]
+        [ flexGrow (int 1)
+        ]
 
 
 eventTitleStyle : Style
 eventTitleStyle =
     batch
         [ color colorWhite
-        , fontStyle italic
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.2)
         , fontWeight (int 500)
         , lineHeight (rem 1.25)
@@ -294,6 +297,7 @@ eventParagraphStyle =
         , marginBlockEnd (rem 0)
         , margin (rem 0)
         , fontSize (rem 0.8777)
+        , fontStyle italic
         , withMediaTabletPortraitUp [ fontSize (rem 1.2), lineHeight (rem 1.75) ]
         ]
 
