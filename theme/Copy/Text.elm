@@ -1,4 +1,4 @@
-module Copy.Text exposing (isValidUrl, t, urlToDisplay)
+module Copy.Text exposing (t)
 
 import Constants exposing (canonicalUrl)
 import Copy.Keys exposing (Key(..), Prefix(..))
@@ -18,21 +18,21 @@ t key =
         SiteStrapline ->
             "Space and spaces for us"
 
-        TransDimensionDescription ->
+        PartnershipDescription ->
             -- Note this is also in content/about/main.md
             -- If they should remain in sync, we should remove from there
             "The Trans Dimension is an online community hub connecting trans communities in London and Manchester. We collate news, events and services by and for trans people."
 
         SiteLogoSrc ->
-            canonicalUrl ++ "images/logos/tdd_logo_with_strapline_on_darkBlue.png"
+            canonicalUrl ++ "images/logos/site_logo_on_primary_background.png"
 
         GeeksForSocialChangeHomeUrl ->
             "https://gfsc.studio/"
 
-        GenderedIntelligenceHomeUrl ->
+        PartnerOrganisationHomeUrl ->
             "https://genderedintelligence.co.uk/"
 
-        GenderedIntelligenceLogoTxt ->
+        PartnerOrganisationLogoTxt ->
             "Gendered Intelligence"
 
         GoogleMapSearchUrl address ->
@@ -146,7 +146,7 @@ t key =
             "Trusted, accessible, trans-friendly spaces. Always expanding."
 
         IndexIntroMessage ->
-            t TransDimensionDescription
+            t PartnershipDescription
 
         IndexIntroButtonText ->
             "See what's on"
@@ -168,7 +168,7 @@ t key =
             "About"
 
         AboutMetaDescription ->
-            t TransDimensionDescription
+            t PartnershipDescription
 
         --- Events Page
         EventsTitle ->
@@ -377,37 +377,3 @@ t key =
 
         ErrorButtonText ->
             "Back to home"
-
-
-urlRecombiner : Maybe Url.Url -> String
-urlRecombiner urlRecord =
-    case urlRecord of
-        Just url ->
-            url.host ++ url.path ++ Maybe.withDefault "" url.query ++ Maybe.withDefault "" url.fragment
-
-        Nothing ->
-            ""
-
-
-chompTrailingUrlSlash : String -> String
-chompTrailingUrlSlash urlString =
-    if String.endsWith "/" urlString then
-        String.dropRight 1 urlString
-
-    else
-        urlString
-
-
-urlToDisplay : String -> String
-urlToDisplay url =
-    Url.fromString url |> urlRecombiner |> chompTrailingUrlSlash
-
-
-isValidUrl : String -> Bool
-isValidUrl urlString =
-    case Url.fromString urlString of
-        Just url ->
-            url.protocol == Url.Https
-
-        Nothing ->
-            False
