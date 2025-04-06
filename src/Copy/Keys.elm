@@ -8,7 +8,6 @@ type Prefix
 
 type Key
     = SiteTitle
-    | SiteStrapline
     | PartnershipDescription
     | SiteLogoSrc
     | PageMetaTitle String
@@ -36,6 +35,7 @@ type Key
     | FooterInfoCompany
     | FooterInfoOffice
     | FooterCreditTitle
+    | FooterCreditText
     | FooterCredit1Text
     | FooterCredit1Name
     | FooterCredit1Link

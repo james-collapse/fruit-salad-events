@@ -13,10 +13,7 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "The Trans Dimension"
-
-        SiteStrapline ->
-            "Space and spaces for us"
+            "Fruit Salad Events Collective"
 
         PartnershipDescription ->
             -- Note this is also in content/about/main.md
@@ -60,10 +57,10 @@ t key =
 
         --- Footer
         FooterSocial ->
-            "Follow us out there"
+            "Follow us"
 
         FooterInstaLink ->
-            "https://www.instagram.com/genderedintelligence/"
+            "https://www.instagram.com/fruitsaladeventsco/"
 
         FooterTwitterLink ->
             "https://twitter.com/genderintell"
@@ -98,6 +95,9 @@ t key =
         FooterCreditTitle ->
             "Credits"
 
+        FooterCreditText ->
+            "Website by"
+
         FooterCredit1Text ->
             "Illustrations by"
 
@@ -126,7 +126,7 @@ t key =
             t GeeksForSocialChangeHomeUrl
 
         FooterCopyright year ->
-            "© " ++ year ++ " Gendered Intelligence. All rights reserved."
+            "© " ++ year ++ " Fruit Salad Events Collective. All rights reserved."
 
         FooterPlaceCal ->
             "Powered by PlaceCal"
