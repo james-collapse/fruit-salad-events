@@ -2,7 +2,7 @@ module Theme.PageTemplate exposing (BigText, HeaderType(..), PageUsingTemplate, 
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, absolute, after, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderBox, bottom, boxSizing, calc, center, color, display, fontSize, fontStyle, fontWeight, height, important, inlineBlock, int, italic, left, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, none, outline, paddingBottom, paddingTop, pct, position, property, px, relative, rem, textAlign, top, url, vw, width, zIndex)
+import Css exposing (Style, absolute, after, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderBox, bottom, boxSizing, calc, center, color, display, displayFlex, fontFamilies, fontSize, fontStyle, fontWeight, height, important, inlineBlock, int, italic, justifyContent, left, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, none, num, opacity, outline, padding2, paddingBottom, paddingTop, pct, position, property, px, relative, rem, serif, textAlign, top, url, vw, width, zIndex)
 import Head
 import Head.Seo as Seo
 import Html.Styled as Html exposing (Html, div, h1, h2, h3, img, p, section, text)
@@ -102,7 +102,8 @@ pageMetaTags { title, description, imageSrc } =
 view : PageUsingTemplate msg -> Html.Html msg
 view pageInfo =
     div [ css [ mainStyle ] ]
-        [ viewHeader pageInfo
+        [ viewLogo
+        , viewHeader pageInfo
         , div [ css [ contentWrapperStyle ] ]
             [ case stringToHeaderType pageInfo.headerType of
                 InvisibleHeader ->
@@ -126,18 +127,51 @@ view pageInfo =
         ]
 
 
+viewLogo : Html msg
+viewLogo =
+    section [ css [ logoStyle ] ]
+        [ logoImage 0.25
+        , logoImage 0.5
+        , logoImage 1.0
+        , logoImage 0.5
+        , logoImage 0.25
+        ]
+
+
+logoStyle : Style
+logoStyle =
+    batch
+        [ displayFlex
+        , justifyContent center
+        ]
+
+
+logoImageStyle : Style
+logoImageStyle =
+    batch
+        [ width (px 305)
+        , padding2 (rem 1) (rem 1)
+        , display inlineBlock
+        , withMediaMediumDesktopUp [ width (px 305) ]
+        , withMediaSmallDesktopUp [ width (px 305) ]
+        , withMediaTabletLandscapeUp [ width (px 305) ]
+        ]
+
+
+logoImage : Float -> Html msg
+logoImage op =
+    img
+        [ src "/images/logos/fsec_logo_text_pink.svg"
+        , alt (t SiteTitle)
+        , css [ logoImageStyle, opacity (num op) ]
+        ]
+        []
+
+
 viewHeader : PageUsingTemplate msg -> Html msg
 viewHeader pageInfo =
     section []
-        [ h1 [ css [ headerLogoStyle ] ]
-            [ img
-                [ src "/images/logos/site_logo_main.svg"
-                , alt (t SiteTitle ++ ", " ++ t SiteStrapline)
-                , css [ headerLogoImageStyle ]
-                ]
-                []
-            ]
-        , h2
+        [ h2
             [ css
                 [ pageHeadingStyle
                 , case stringToHeaderType pageInfo.headerType of
@@ -244,10 +278,10 @@ headerLogoImageStyle =
 pageHeadingStyle : Style
 pageHeadingStyle =
     batch
-        [ fontSize (rem 2.1)
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , fontSize (rem 2.1)
         , outline none
         , color colorWhite
-        , fontStyle italic
         , fontWeight (int 500)
         , textAlign center
         , marginBlockStart (rem 0)
@@ -282,7 +316,7 @@ pageHeadingStyle =
                 ]
             ]
         , withMediaTabletLandscapeUp
-            [ fontSize (rem 3.1), paddingBottom (rem 1) ]
+            [ fontSize (rem 3.1), paddingBottom (rem 2) ]
         , withMediaTabletPortraitUp
             [ fontSize (rem 2.5) ]
         ]
@@ -291,89 +325,20 @@ pageHeadingStyle =
 pageHeadingGenericStyle : Style
 pageHeadingGenericStyle =
     batch
-        [ before
-            [ height (px 240)
-            , backgroundImage (url "/images/illustrations/320px/generic_header.png")
-            , top (px -130)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/generic_header.png")
-                , height (px 846)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/generic_header.png")
-                , height (px 486)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/generic_header.png")
-                , height (px 499)
-                , top (px -100)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/generic_header.png")
-                , height (px 432)
-                , top (px -75)
-                ]
-            ]
-        , withMediaTabletLandscapeUp
-            [ paddingTop (px 275) ]
+        [ withMediaTabletLandscapeUp
+            [ paddingTop (rem 2) ]
         , withMediaTabletPortraitUp
-            [ paddingTop (px 250) ]
+            [ paddingTop (rem 2) ]
         ]
 
 
 pageHeadingAboutStyle : Style
 pageHeadingAboutStyle =
     batch
-        [ before
-            [ height (px 240)
-            , backgroundImage (url "/images/illustrations/320px/about_1_header.png")
-            , top (px -130)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/about_1_header.png")
-                , height (px 1150)
-                , top (px -130)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/about_1_header.png")
-                , height (px 486)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/about_1_header.png")
-                , height (px 499)
-                , top (px -100)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/about_1_header.png")
-                , height (px 432)
-                , top (px -75)
-                ]
-            ]
-        , after
-            [ withMediaSmallDesktopUp
-                [ width (px 231)
-                , height (px 434)
-                , backgroundSize (px 231)
-                , bottom (px -250)
-                , left (px -100)
-                ]
-            , withMediaTabletLandscapeUp
-                [ property "content" "\"\""
-                , display block
-                , width (px 162)
-                , height (px 305)
-                , backgroundSize (px 162)
-                , backgroundPosition center
-                , position absolute
-                , zIndex (int 2)
-                , backgroundRepeat noRepeat
-                , backgroundImage (url "/images/characters/primary-character.png")
-                , bottom (px -90)
-                ]
-            ]
-        , withMediaTabletLandscapeUp
-            [ paddingTop (px 275) ]
+        [ withMediaTabletLandscapeUp
+            [ paddingTop (rem 2) ]
         , withMediaTabletPortraitUp
-            [ paddingTop (px 250) ]
+            [ paddingTop (rem 2) ]
         ]
 
 
@@ -395,45 +360,17 @@ mainStyle =
             , position absolute
             , zIndex (int -1)
             , backgroundRepeat noRepeat
-            , backgroundImage (url "/images/illustrations/320px/generic_footer.png")
             , bottom (px -180)
             , margin2 (rem 0) (rem -0.75)
-            , withMediaMediumDesktopUp
-                [ backgroundImage (url "/images/illustrations/1920px/generic_footer.png")
-                , height (px 250)
-                , bottom (px -220)
-                , backgroundSize (px 1920)
-                ]
-            , withMediaSmallDesktopUp
-                [ backgroundImage (url "/images/illustrations/1366px/generic_footer.png")
-                , height (px 200)
-                , margin2 (rem 0) (calc (vw -50) minus (px -575))
-                , bottom (px -180)
-                , backgroundSize (px 1366)
-                ]
-            , withMediaTabletLandscapeUp
-                [ backgroundImage (url "/images/illustrations/1024px/generic_footer.png")
-                , height (px 280)
-                , margin2 (rem 0) (rem -1.5)
-                , bottom (px -200)
-                , backgroundSize (px 1200)
-                ]
-            , withMediaTabletPortraitUp
-                [ backgroundImage (url "/images/illustrations/768px/generic_footer.png")
-                , backgroundSize (px 900)
-                , height (px 200)
-                , margin2 (rem 0) (rem -2)
-                , bottom (px -165)
-                ]
             ]
         , withMediaMediumDesktopUp
-            [ margin4 (rem 1) auto (px 250) auto ]
+            [ margin4 (rem 1) auto (px 100) auto ]
         , withMediaSmallDesktopUp
-            [ margin4 (rem 1) auto (px 180) auto ]
+            [ margin4 (rem 1) auto (px 100) auto ]
         , withMediaTabletLandscapeUp
-            [ margin4 (rem 1) (rem 1.5) (px 180) (rem 1.5) ]
+            [ margin4 (rem 1) (rem 1.5) (px 100) (rem 1.5) ]
         , withMediaTabletPortraitUp
-            [ margin4 (rem 1) (rem 2) (px 150) (rem 2) ]
+            [ margin4 (rem 1) (rem 2) (px 100) (rem 2) ]
         ]
 
 

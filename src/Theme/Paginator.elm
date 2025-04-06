@@ -3,7 +3,7 @@ module Theme.Paginator exposing (Filter(..), Msg(..), ScrollDirection(..), butto
 import Browser.Dom exposing (Error, Viewport, getViewportOf, setViewportOf)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, active, auto, backgroundColor, batch, borderBox, borderColor, borderRadius, borderStyle, borderWidth, boxSizing, center, color, cursor, deg, display, displayFlex, fitContent, flexWrap, focus, fontSize, fontWeight, height, hover, important, int, justifyContent, listStyleType, margin, margin2, margin4, maxWidth, noWrap, none, overflowX, padding2, padding4, paddingLeft, paddingRight, pct, pointer, position, property, pseudoElement, px, relative, rem, rotate, scroll, solid, textAlign, transform, width, wrap)
+import Css exposing (Style, active, auto, backgroundColor, batch, borderBox, borderColor, borderRadius, borderStyle, borderWidth, boxSizing, center, color, cursor, deg, display, displayFlex, fitContent, flexWrap, focus, fontFamilies, fontSize, fontWeight, height, hover, important, int, justifyContent, listStyleType, margin, margin2, margin4, maxWidth, noWrap, none, overflowX, padding2, padding4, paddingLeft, paddingRight, pct, pointer, position, property, pseudoElement, px, relative, rem, rotate, scroll, serif, solid, textAlign, transform, width, wrap)
 import Css.Global exposing (descendants, typeSelector)
 import Css.Transitions exposing (transition)
 import Data.PlaceCal.Events
@@ -229,7 +229,7 @@ buttonMarginMobile =
 
 buttonWidthTablet : Float
 buttonWidthTablet =
-    110
+    140
 
 
 buttonMarginTablet : Float
@@ -239,7 +239,7 @@ buttonMarginTablet =
 
 buttonWidthFullWidth : Float
 buttonWidthFullWidth =
-    130
+    140
 
 
 buttonMarginFullWidth : Float
@@ -418,6 +418,7 @@ paginationButtonListItemButtonStyle : Style
 paginationButtonListItemButtonStyle =
     batch
         [ paginationButtonStyle
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 0.875)
         , fontWeight (int 600)
         , padding4 (rem 0.2) (rem 0.2) (rem 0.3) (rem 0.2)
@@ -432,6 +433,7 @@ paginationButtonListItemButtonActiveStyle : Style
 paginationButtonListItemButtonActiveStyle =
     batch
         [ paginationButtonStyle
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 0.875)
         , fontWeight (int 600)
         , padding4 (rem 0.2) (rem 0.2) (rem 0.3) (rem 0.2)

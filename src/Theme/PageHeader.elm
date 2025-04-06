@@ -41,7 +41,7 @@ viewPageHeaderTitle : Html Msg
 viewPageHeaderTitle =
     div [ css [ titleStyle ] ]
         [ h1 []
-            [ span [ css [ screenReaderOnly ] ] [ text (t SiteTitle ++ ", " ++ t SiteStrapline) ]
+            [ span [ css [ screenReaderOnly ] ] [ text (t SiteTitle) ]
             , span [ attribute "aria-hidden" "true" ] [ Theme.Logo.view ]
             ]
         ]

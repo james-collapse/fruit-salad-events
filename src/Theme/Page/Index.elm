@@ -2,14 +2,14 @@ module Theme.Page.Index exposing (view)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, absolute, after, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderRadius, bottom, calc, center, color, display, em, fontFamilies, fontSize, fontStyle, fontWeight, height, important, inlineBlock, int, italic, lineHeight, margin2, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, none, normal, padding2, padding4, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, property, px, relative, rem, sansSerif, serif, textAlign, top, url, vw, width, zIndex)
+import Css exposing (Style, absolute, auto, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, borderRadius, bottom, calc, center, color, display, displayFlex, em, fontFamilies, fontSize, fontStyle, fontWeight, important, inlineBlock, int, italic, justifyContent, lineHeight, margin2, marginBottom, marginLeft, marginRight, marginTop, maxWidth, minus, noRepeat, normal, num, opacity, padding2, padding4, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, property, px, relative, rem, sansSerif, serif, textAlign, vw, width, zIndex)
 import Data.PlaceCal.Articles
 import Data.PlaceCal.Events
 import Data.PlaceCal.Partners
 import Helpers.TransRoutes
-import Html.Styled exposing (Html, a, div, h1, h2, img, p, section, text)
+import Html.Styled exposing (Html, a, div, h2, img, p, section, text)
 import Html.Styled.Attributes exposing (alt, css, href, src)
-import Skin.Global exposing (colorPrimary, colorSecondary, primaryBackgroundStyle, primaryButtonStyle, secondaryBackgroundStyle, secondaryButtonOnDarkBackgroundStyle, smallFloatingTitleStyle, whiteButtonStyle)
+import Skin.Global exposing (colorPrimary, primaryBackgroundStyle, primaryButtonStyle, secondaryBackgroundStyle, secondaryButtonOnDarkBackgroundStyle, smallFloatingTitleStyle, whiteButtonStyle)
 import Theme.GlobalLayout
     exposing
         ( buttonFloatingWrapperStyle
@@ -39,24 +39,38 @@ view :
     -> Html Theme.Page.Events.Msg
 view sharedData localModel =
     div [ css [ pageWrapperStyle ] ]
-        [ viewIntro (t IndexIntroTitle) (t IndexIntroMessage) (t IndexIntroButtonText)
+        [ viewIntroLogo
+        , viewIntro (t IndexIntroTitle) (t IndexIntroMessage) (t IndexIntroButtonText)
         , viewFeatured localModel.nowTime (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
         , viewLatestNews (List.head sharedData.articles) (t IndexNewsHeader) (t IndexNewsButtonText)
         ]
 
 
+viewIntroLogo : Html msg
+viewIntroLogo =
+    section [ css [ sectionStyle ] ]
+        [ div [ css [ logoStyle ] ]
+            [ logoImage 0.5
+            , logoImage 1.0
+            , logoImage 0.5
+            ]
+        ]
+
+
+logoImage : Float -> Html msg
+logoImage op =
+    img
+        [ src "/images/logos/fsec_logo_text_pink.svg"
+        , alt (t SiteTitle)
+        , css [ logoImageStyle, opacity (num op) ]
+        ]
+        []
+
+
 viewIntro : String -> String -> String -> Html msg
 viewIntro introTitle introMsg eventButtonText =
-    section [ css [ sectionStyle, secondaryBackgroundStyle, introSectionStyle ] ]
-        [ h1 [ css [ logoStyle ] ]
-            [ img
-                [ src "/images/logos/site_logo_main.svg"
-                , alt (t SiteTitle ++ ", " ++ t SiteStrapline)
-                , css [ logoImageStyle ]
-                ]
-                []
-            ]
-        , h2 [ css [ sectionSubtitleStyle ] ] [ text introTitle ]
+    section [ css [ sectionStyle, secondaryBackgroundStyle ] ]
+        [ h2 [ css [ sectionSubtitleStyle ] ] [ text introTitle ]
         , p [ css [ sectionTextStyle ] ] [ text introMsg ]
         , p [ css [ buttonFloatingWrapperStyle, width (calc (pct 100) minus (rem 2)) ] ]
             [ a
@@ -126,27 +140,16 @@ pageWrapperStyle =
 logoStyle : Style
 logoStyle =
     batch
-        [ display none
-        , withMediaMediumDesktopUp
-            [ top (px -750) ]
-        , withMediaSmallDesktopUp
-            [ top (px -575) ]
-        , withMediaTabletLandscapeUp
-            [ top (px -425) ]
-        , withMediaTabletPortraitUp
-            [ display block
-            , position absolute
-            , width (pct 100)
-            , textAlign center
-            , top (px -600)
-            ]
+        [ displayFlex
+        , justifyContent center
         ]
 
 
 logoImageStyle : Style
 logoImageStyle =
     batch
-        [ width (px 268)
+        [ width (px 570)
+        , padding2 (rem 1) (rem 1)
         , display inlineBlock
         , withMediaMediumDesktopUp [ width (px 527) ]
         , withMediaSmallDesktopUp [ width (px 381) ]
@@ -236,19 +239,6 @@ sectionTextStyle =
         , withMediaTabletPortraitUp
             [ fontSize (rem 1.2)
             , margin2 (rem 1) (rem 4)
-            ]
-        ]
-
-
-introSectionStyle : Style
-introSectionStyle =
-    batch
-        [ marginTop (px 430)
-        , withMediaMediumDesktopUp [ marginTop (px 1000) ]
-        , withMediaSmallDesktopUp [ marginTop (px 750) ]
-        , withMediaTabletLandscapeUp [ marginTop (px 550) ]
-        , withMediaTabletPortraitUp
-            [ marginTop (px 820)
             ]
         ]
 

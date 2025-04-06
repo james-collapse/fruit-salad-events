@@ -312,7 +312,8 @@ goToNextEventButtonContainerStyle =
 goToNextEventButtonStyle : Style
 goToNextEventButtonStyle =
     batch
-        [ important (width (px 200))
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , important (width (px 200))
         , paginationButtonStyle
         , fontSize (rem 0.875)
         , fontWeight (int 600)

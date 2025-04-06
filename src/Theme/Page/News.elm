@@ -2,7 +2,7 @@ module Theme.Page.News exposing (viewNewsArticle, viewNewsList)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, after, auto, batch, borderBox, borderRadius, boxSizing, calc, center, displayFlex, em, flexGrow, fontSize, fontStyle, fontWeight, height, int, italic, left, lineHeight, margin, margin2, margin4, marginBottom, marginTop, maxWidth, minus, padding, padding4, paddingLeft, pct, position, property, px, relative, rem, textAlign, width)
+import Css exposing (Style, after, auto, batch, borderBox, borderRadius, boxSizing, calc, center, displayFlex, em, flexGrow, fontFamilies, fontSize, fontStyle, fontWeight, height, int, italic, left, lineHeight, margin, margin2, margin4, marginBottom, marginTop, maxWidth, minus, padding, padding4, paddingLeft, pct, position, property, px, relative, rem, serif, textAlign, width)
 import Data.PlaceCal.Articles
 import Helpers.TransDate as TransDate
 import Helpers.TransRoutes as TransRoutes exposing (Route(..))
@@ -132,8 +132,8 @@ newsItemInfoStyle =
 newsItemTitleStyle : Style
 newsItemTitleStyle =
     batch
-        [ fontWeight (int 400)
-        , fontStyle italic
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , fontWeight (int 400)
         , textAlign center
         , fontSize (rem 1.85)
         , lineHeight (em 1.3)
@@ -163,6 +163,7 @@ newsItemSummaryStyle : Style
 newsItemSummaryStyle =
     batch
         [ textAlign center
+        , fontStyle italic
         , marginTop (rem 0.5)
         , withMediaTabletPortraitUp [ textAlign left, fontSize (rem 1.2) ]
         ]
