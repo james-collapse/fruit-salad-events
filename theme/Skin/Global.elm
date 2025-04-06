@@ -50,7 +50,7 @@ colorSecondaryLight =
 
 colorAccent : Color
 colorAccent =
-    hex "814470"
+    hex "FFBD00"
 
 
 colorAccentDark : Color
@@ -247,9 +247,9 @@ introTextLargeStyle : Style
 introTextLargeStyle =
     batch
         [ textAlign center
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.6)
         , lineHeight (rem 2)
-        , fontStyle italic
         , fontWeight (int 500)
         , margin2 (rem 1) (rem 0.5)
         , Theme.GlobalLayout.withMediaTabletLandscapeUp
@@ -263,6 +263,8 @@ introTextSmallStyle : Style
 introTextSmallStyle =
     batch
         [ textAlign center
+        , fontStyle italic
+        , fontWeight (int 500)
         , margin2 (rem 1.5) (rem 0)
         , Theme.GlobalLayout.withMediaTabletLandscapeUp
             [ fontSize (rem 1.2), margin2 (rem 1.5) (rem 6.5) ]
@@ -291,7 +293,9 @@ linkStyle =
 normalFirstParagraphStyle : Style
 normalFirstParagraphStyle =
     batch
-        [ descendants
+        [ fontWeight (int 500)
+        , fontStyle italic
+        , descendants
             [ typeSelector "p"
                 [ batch
                     [ firstChild
