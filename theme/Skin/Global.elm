@@ -45,7 +45,7 @@ colorSecondary =
 
 colorSecondaryLight : Color
 colorSecondaryLight =
-    hex "FFBCD3"
+    hex "EFEFEF"
 
 
 colorAccent : Color
@@ -55,7 +55,7 @@ colorAccent =
 
 colorAccentDark : Color
 colorAccentDark =
-    hex "432955"
+    hex "B2B4C3"
 
 
 colorWhite : Color

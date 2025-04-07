@@ -27,22 +27,10 @@ t key =
             "https://gfsc.studio/"
 
         PartnerOrganisationHomeUrl ->
-            "https://genderedintelligence.co.uk/"
+            "[Partnership Organisation website] https://example.co.uk/"
 
         PartnerOrganisationLogoTxt ->
-            "Gendered Intelligence"
-
-        GoogleMapSearchUrl address ->
-            "https://www.google.com/maps/search/?api=1&query=" ++ Url.percentEncode address
-
-        SeeOnGoogleMapText ->
-            "See on Google map"
-
-        MapImageAltText locationName ->
-            "A map showing the location of " ++ locationName
-
-        PageMetaTitle pageTitle ->
-            String.join " | " [ pageTitle, t SiteTitle ]
+            "[Partnership Organisation logo text]"
 
         --- Header
         HeaderMobileMenuButton ->
@@ -52,7 +40,7 @@ t key =
             "Donate"
 
         HeaderAskLink ->
-            -- PHT Donorbox
+            -- f you don't have a donation link, you can retain ours for the money will go towards maintaining this template
             "https://donorbox.org/the-trans-dimension"
 
         --- Footer
@@ -63,10 +51,10 @@ t key =
             "https://www.instagram.com/fruitsaladeventsco/"
 
         FooterTwitterLink ->
-            "https://twitter.com/genderintell"
+            "https://twitter.com/[Twitter X handle]"
 
         FooterFacebookLink ->
-            "https://www.facebook.com/GenderedIntelligence"
+            "https://www.facebook.com/[Facebook handle]"
 
         FooterSignupText ->
             "Register for updates"
@@ -81,16 +69,16 @@ t key =
             "Created by"
 
         FooterInfoTitle ->
-            "The Trans Dimension, c/o Gendered Intelligence"
+            "[Partnership orgnaisation], c/o GFSC Community CIC"
 
         FooterInfoCharity ->
-            "Gendered Intelligence is a Registered Charity in England and Wales No. 1182558."
+            "[Partnership organisation charity reg. or blank]"
 
         FooterInfoCompany ->
-            "Registered as a Company Limited by Guarantee in England and Wales No. 06617608."
+            "[Partnership organisation company reg. or blank]"
 
         FooterInfoOffice ->
-            "Registered office at VAI, 200a Pentonville Road, London N1 9JP."
+            "[Partnership organisation registered office]"
 
         FooterCreditTitle ->
             "Credits"
@@ -98,23 +86,26 @@ t key =
         FooterCreditText ->
             "Website by"
 
+        FooterCreditText ->
+            "Website by"
+
         FooterCredit1Text ->
-            "Illustrations by"
+            "[e.g. Illustrations by]"
 
         FooterCredit1Name ->
-            "Harry Woodgate"
+            "[Illustrator name]"
 
         FooterCredit1Link ->
-            "https://www.harrywoodgate.com/"
+            "https://[illustrator.example.com]"
 
         FooterCredit2Text ->
-            "design by"
+            "[Credit 2]"
 
         FooterCredit2Name ->
-            "Squid"
+            "[Credit 2 name]"
 
         FooterCredit2Link ->
-            "https://studiosquid.co.uk/"
+            "https://[credit2.example.com]"
 
         FooterCredit3Text ->
             "website by"
@@ -140,7 +131,7 @@ t key =
             "Home"
 
         IndexMetaDescription ->
-            "An online community hub which will connect trans communities across the UK by collating news, events and services by and for trans people in one easy-to-reach place. A collaboration between Gendered Intelligence and Geeks for Social Change."
+            "[Home page meta description] Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean. "
 
         IndexIntroTitle ->
             "Queer events from the community"
@@ -175,10 +166,10 @@ t key =
             "Events"
 
         EventsMetaDescription ->
-            "Events and activities by and for trans communities across the UK."
+            "Events and activities by and for [who? where?]."
 
         EventsSummary ->
-            "Upcoming events & activities for you."
+            "Upcoming events & activities"
 
         EventsSubHeading ->
             "Upcoming events"
@@ -233,19 +224,19 @@ t key =
             "Partners"
 
         PartnersMetaDescription ->
-            "Trans Dimension partners form an online community for connecting trans people across the UK by publishing service information, events and news on PlaceCal."
+            "[Partner listing meta description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 
         PartnersIntroSummary ->
-            "The Trans Dimension is a partnership of grassroots groups and charities with a track record of supporting the trans community."
+            "[Partner listing intro summary] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu."
 
         PartnersIntroDescription ->
-            "All of our partners are explicitly trans-friendly organisations. Some are led by trans people, and some led by friends and allies. They put on events, provide services and offer support for members of our community."
+            "[Partner listing intro description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 
         PartnersListHeading ->
             "All partners"
 
         PartnersListEmpty ->
-            "There are currently no Trans Dimension partners"
+            "There are currently no [Partnership name] partners"
 
         PartnersMapAltText ->
             "A map showing the locations of all partners with listed addresses"
@@ -253,9 +244,6 @@ t key =
         --- Partner Page
         PartnerTitle partnerName ->
             "PlaceCal Partner - " ++ partnerName
-
-        PartnerMetaDescription partnerName partnerSummary ->
-            partnerName ++ " - " ++ partnerSummary
 
         PartnerContactsHeading ->
             "Get in touch"
@@ -289,13 +277,13 @@ t key =
             "Join us"
 
         JoinUsSubtitle ->
-            "Want to be listed on The Trans Dimension?"
+            "Want to be listed on" ++ t SiteTitle ++ "?"
 
         JoinUsMetaDescription ->
-            "Want to be listed on The Trans Dimension? Get in touch and learn how you can create space and spaces for us."
+            "[Join Us page meta description] Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
 
         JoinUsDescription ->
-            "Get in touch and learn how you can create space and spaces for us."
+            "[Join Us description]Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
 
         JoinUsFormInputNameLabel ->
             "Name"
@@ -366,7 +354,7 @@ t key =
             "Privacy"
 
         PrivacyMetaDescription ->
-            "Privacy information for The Trans Dimension website."
+            "Privacy information for " ++ t SiteTitle
 
         --- 404 Page
         ErrorTitle ->
@@ -377,3 +365,36 @@ t key =
 
         ErrorButtonText ->
             "Back to home"
+
+        ---
+        -- Core text that probably does not need editing
+        ---
+        SiteLogoSrc ->
+            canonicalUrl ++ "images/logos/site_logo_on_primary_background.png"
+
+        GeeksForSocialChangeHomeUrl ->
+            "https://gfsc.studio/"
+
+        GoogleMapSearchUrl address ->
+            "https://www.google.com/maps/search/?api=1&query=" ++ Url.percentEncode address
+
+        SeeOnGoogleMapText ->
+            "See on Google map"
+
+        MapImageAltText locationName ->
+            "A map showing the location of " ++ locationName
+
+        PageMetaTitle pageTitle ->
+            String.join " | " [ pageTitle, t SiteTitle ]
+
+        FooterPlaceCal ->
+            "Powered by PlaceCal"
+
+        AllRegionSelectorLabel ->
+            "Everywhere"
+
+        IndexIntroMessage ->
+            t PartnershipDescription
+
+        PartnerMetaDescription partnerName partnerSummary ->
+            partnerName ++ " - " ++ partnerSummary
