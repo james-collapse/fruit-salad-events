@@ -20,12 +20,6 @@ t key =
             -- If they should remain in sync, we should remove from there
             "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 
-        SiteLogoSrc ->
-            canonicalUrl ++ "images/logos/site_logo_on_primary_background.png"
-
-        GeeksForSocialChangeHomeUrl ->
-            "https://gfsc.studio/"
-
         PartnerOrganisationHomeUrl ->
             "[Partnership Organisation website] https://example.co.uk/"
 
@@ -86,9 +80,6 @@ t key =
         FooterCreditText ->
             "Website by"
 
-        FooterCreditText ->
-            "Website by"
-
         FooterCredit1Text ->
             "[e.g. Illustrations by]"
 
@@ -119,13 +110,6 @@ t key =
         FooterCopyright year ->
             "© " ++ year ++ " Fruit Salad Events Collective. All rights reserved."
 
-        FooterPlaceCal ->
-            "Powered by PlaceCal"
-
-        --- Region Selector
-        AllRegionSelectorLabel ->
-            "Everywhere"
-
         --- Index Page
         IndexTitle ->
             "Home"
@@ -135,9 +119,6 @@ t key =
 
         IndexIntroTitle ->
             "Queer events from the community"
-
-        IndexIntroMessage ->
-            t PartnershipDescription
 
         IndexIntroButtonText ->
             "See what's on"
