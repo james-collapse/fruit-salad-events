@@ -147,10 +147,10 @@ t key =
             "Events"
 
         EventsMetaDescription ->
-            "Events and activities by and for [who? where?]."
+            "Events and activities from our collective members in London."
 
         EventsSummary ->
-            "Upcoming events & activities"
+            "Upcoming events from our collective"
 
         EventsSubHeading ->
             "Upcoming events"
@@ -208,10 +208,10 @@ t key =
             "[Partner listing meta description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
 
         PartnersIntroSummary ->
-            "[Partner listing intro summary] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu."
+            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for community platform and support."
 
         PartnersIntroDescription ->
-            "[Partner listing intro description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+            "Collective members can actively shape the collective - if you put on similar events - get in touch to join!"
 
         PartnersListHeading ->
             "All partners"
