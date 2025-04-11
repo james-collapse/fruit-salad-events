@@ -205,7 +205,7 @@ t key =
             "Partners"
 
         PartnersMetaDescription ->
-            "[Partner listing meta description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+            "Members of Fruit Salad Events Collective."
 
         PartnersIntroSummary ->
             "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for community platform and support."
