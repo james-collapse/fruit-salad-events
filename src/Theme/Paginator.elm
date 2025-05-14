@@ -11,7 +11,7 @@ import Helpers.TransDate as TransDate
 import Html.Styled exposing (Html, button, div, img, li, text, ul)
 import Html.Styled.Attributes exposing (css, id, src)
 import Html.Styled.Events
-import Skin.Global exposing (colorAccentDark, colorPrimary, colorSecondary, colorWhite)
+import Skin.Global exposing (colorAccent, colorPrimary, colorSecondary, colorWhite)
 import Task exposing (Task)
 import Theme.GlobalLayout exposing (backgroundColorTransition, borderTransition, colorTransition, maxMobile, maxTabletPortrait, withMediaCanHover, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Time
@@ -295,10 +295,9 @@ paginationButtonStyle =
         , cursor pointer
         , withMediaCanHover
             [ hover
-                [ backgroundColor colorAccentDark
-                , color colorWhite
-                , borderColor colorWhite
-                , descendants [ typeSelector "img" [ property "filter" "invert(1)" ] ]
+                [ backgroundColor colorAccent
+                , color colorPrimary
+                , borderColor colorAccent
                 ]
             ]
         , focus

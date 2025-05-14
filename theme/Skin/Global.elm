@@ -80,7 +80,7 @@ whiteButtonStyle =
         , backgroundColor colorWhite
         , color colorPrimary
         , borderColor colorWhite
-        , withMediaCanHover [ hover [ backgroundColor colorAccent, color colorWhite ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, color colorPrimary, borderColor colorAccent ] ]
         , active [ backgroundColor colorPrimary, color colorWhite ]
         , focus [ backgroundColor colorPrimary, color colorWhite ]
         ]
@@ -93,7 +93,7 @@ primaryButtonStyle =
         , backgroundColor colorPrimary
         , color colorWhite
         , borderColor colorSecondary
-        , Theme.GlobalLayout.withMediaCanHover [ hover [ backgroundColor colorAccent, color colorWhite, borderColor colorWhite ] ]
+        , Theme.GlobalLayout.withMediaCanHover [ hover [ backgroundColor colorAccent, color colorPrimary, borderColor colorAccent ] ]
         , active [ backgroundColor colorSecondary, color colorPrimary, borderColor colorWhite ]
         , focus [ backgroundColor colorSecondary, color colorPrimary, borderColor colorWhite ]
         ]
@@ -106,7 +106,7 @@ secondaryButtonOnDarkBackgroundStyle =
         , backgroundColor colorSecondary
         , color colorPrimary
         , borderColor colorSecondary
-        , withMediaCanHover [ hover [ backgroundColor colorSecondaryLight, borderColor colorSecondaryLight ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorAccent ] ]
         , active [ backgroundColor colorWhite, borderColor colorWhite ]
         , focus [ backgroundColor colorWhite, borderColor colorWhite ]
         ]
@@ -119,7 +119,7 @@ secondaryButtonOnLightBackgroundStyle =
         , backgroundColor colorSecondary
         , color colorPrimary
         , borderColor colorSecondary
-        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorWhite, color colorWhite ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorAccent, color colorPrimary ] ]
         , active [ backgroundColor colorPrimary, borderColor colorWhite, color colorWhite ]
         , focus [ backgroundColor colorPrimary, borderColor colorWhite, color colorWhite ]
         ]

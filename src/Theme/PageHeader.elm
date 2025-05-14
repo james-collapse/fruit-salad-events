@@ -2,7 +2,7 @@ module Theme.PageHeader exposing (viewPageHeader)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, alignSelf, auto, backgroundColor, batch, block, border, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderRadius, boxSizing, center, color, column, columnReverse, cursor, display, displayFlex, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontWeight, hover, int, justifyContent, lighter, margin, margin2, marginLeft, marginRight, none, padding, padding2, padding4, paddingBottom, paddingLeft, pointer, rem, row, serif, solid, spaceBetween, textAlign, textDecoration, transparent, unset, wrap, zero)
+import Css exposing (Style, alignItems, alignSelf, auto, backgroundColor, batch, block, border, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderRadius, boxSizing, center, color, column, columnReverse, cursor, display, displayFlex, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, int, italic, justifyContent, margin, margin2, marginLeft, marginRight, none, padding, padding2, padding4, paddingBottom, paddingLeft, pointer, rem, row, serif, solid, spaceBetween, textAlign, textDecoration, transparent, unset, wrap, zero)
 import Css.Transitions exposing (transition)
 import Helpers.TransRoutes as TransRoutes exposing (..)
 import Html.Styled exposing (Html, a, button, div, h1, header, li, nav, span, text, ul)
@@ -201,6 +201,7 @@ buttonTextStyle : Style
 buttonTextStyle =
     batch
         [ color colorWhite
+        , fontStyle italic
         , marginRight (rem 0.5)
         ]
 
@@ -210,7 +211,7 @@ buttonCrossStyle =
     batch
         [ color colorSecondary
         , fontSize (rem 4)
-        , fontWeight lighter
+        , fontStyle italic
         , display block
         , margin2 (rem -1.75) (rem 0)
         ]
