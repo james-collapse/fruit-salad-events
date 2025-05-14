@@ -12,7 +12,6 @@ import Messages exposing (Msg(..))
 import Route exposing (Route)
 import Skin.Global exposing (colorPrimary, colorSecondary, colorWhite)
 import Theme.GlobalLayout exposing (screenReaderOnly, withMediaCanHover, withMediaTabletPortraitUp)
-import Theme.Logo
 import UrlPath exposing (UrlPath)
 
 
@@ -42,7 +41,7 @@ viewPageHeaderTitle =
     div [ css [ titleStyle ] ]
         [ h1 []
             [ span [ css [ screenReaderOnly ] ] [ text (t SiteTitle) ]
-            , span [ attribute "aria-hidden" "true" ] [ Theme.Logo.view ]
+            , span [ css [ acronymStyle ], attribute "aria-hidden" "true" ] [ text (t SiteAcronym) ]
             ]
         ]
 
@@ -153,6 +152,7 @@ titleBarStyle =
     batch
         [ displayFlex
         , justifyContent spaceBetween
+        , alignItems center
         , withMediaTabletPortraitUp [ display none ]
         ]
 
@@ -317,4 +317,13 @@ askButtonStyle =
             [ padding4 (rem 0.375) (rem 1.25) (rem 0.5) (rem 1.25)
             , borderRadius (rem 0.3)
             ]
+        ]
+
+
+acronymStyle : Style
+acronymStyle =
+    batch
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , color colorSecondary
+        , margin2 (rem 2) (rem 1)
         ]

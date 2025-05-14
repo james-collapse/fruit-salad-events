@@ -8,6 +8,7 @@ type Prefix
 
 type Key
     = SiteTitle
+    | SiteAcronym
     | PartnershipDescription
     | SiteLogoSrc
     | PageMetaTitle String
