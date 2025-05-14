@@ -31,7 +31,6 @@ viewPartners partnerList model =
           else
             text ""
         , viewPartnerList filteredPartnerList
-        , viewMap filteredPartnerList
         ]
 
 
