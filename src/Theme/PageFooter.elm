@@ -10,7 +10,7 @@ import Html.Styled exposing (Html, a, button, div, footer, form, img, input, lab
 import Html.Styled.Attributes exposing (action, alt, attribute, css, for, href, id, method, name, placeholder, src, target, type_, value)
 import List exposing (append, concat)
 import Skin.Global exposing (colorAccentDark, colorPrimary, colorSecondary, colorWhite, secondaryButtonOnDarkBackgroundStyle, smallInlineTitleStyle, textInputStyle)
-import Theme.GlobalLayout exposing (colorTransition, withMediaCanHover, withMediaMediumDesktopUp, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
+import Theme.GlobalLayout exposing (colorTransition, withMediaCanHover, withMediaMediumDesktopUp, withMediaMobileOnly, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Theme.Logo
 import Time
 
@@ -38,9 +38,15 @@ viewPageFooterLogo : Html msg
 viewPageFooterLogo =
     div [ css [ footerLogoStyle ] ]
         [ img
-            [ src "/images/logos/fsec_logo_text_blue.svg"
+            [ src "/images/logos/fsec_logo_long_blue.svg"
             , alt (t SiteTitle)
             , css [ footerLogoImageStyle ]
+            ]
+            []
+        , img
+            [ src "/images/logos/fsec_logo_text_blue.svg"
+            , alt (t SiteTitle)
+            , css [ footerLogoMobileImageStyle ]
             ]
             []
         ]
@@ -237,6 +243,7 @@ footerLogoStyle =
         [ padding (rem 1)
         , backgroundColor colorSecondary
         , textAlign center
+        , withMediaMobileOnly [ padding4 (rem 1) (rem 1) (rem 0) (rem 1) ]
         ]
 
 
@@ -244,10 +251,24 @@ footerLogoImageStyle : Style
 footerLogoImageStyle =
     batch
         [ width (pct 100)
-        , maxWidth (px 125)
         , display block
         , margin2 (rem 1) auto
         , withMediaTabletPortraitUp [ margin (rem 0) ]
+        , withMediaMobileOnly [ display none ]
+        ]
+
+
+footerLogoMobileImageStyle : Style
+footerLogoMobileImageStyle =
+    batch
+        [ width (pct 40)
+        , display block
+        , margin2 (rem 1) auto
+        , withMediaTabletPortraitUp [ margin (rem 0) ]
+        , withMediaSmallDesktopUp [ display none ]
+        , withMediaMediumDesktopUp [ display none ]
+        , withMediaTabletLandscapeUp [ display none ]
+        , withMediaTabletPortraitUp [ display none ]
         ]
 
 
@@ -303,7 +324,7 @@ navStyle : Style
 navStyle =
     batch
         [ backgroundColor colorSecondary
-        , padding4 (rem 1) (rem 1) (rem 3) (rem 1)
+        , padding4 (rem 1) (rem 1) (rem 1) (rem 1)
         , marginBottom (rem 1)
         , withMediaTabletPortraitUp [ marginBottom (rem 0), padding (rem 1), maxWidth (pct 55) ]
         ]
