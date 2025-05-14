@@ -2,7 +2,7 @@ module Theme.Page.Events exposing (Msg(..), fromPaginatorMsg, fromRegionSelector
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, backgroundColor, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, calc, center, color, column, display, displayFlex, em, firstChild, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, important, int, italic, justifyContent, lastChild, letterSpacing, lineHeight, margin, margin2, marginBlockEnd, marginBlockStart, marginBottom, marginRight, marginTop, maxWidth, minus, none, padding4, paddingBottom, pct, px, rem, row, rowReverse, serif, solid, spaceBetween, textDecoration, textTransform, uppercase, width, wrap)
+import Css exposing (Style, alignItems, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, calc, center, color, column, display, displayFlex, em, firstChild, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, important, int, italic, justifyContent, lastChild, letterSpacing, lineHeight, margin, margin2, marginBlockEnd, marginBlockStart, marginBottom, marginRight, marginTop, maxWidth, minus, none, paddingBottom, pct, px, rem, row, rowReverse, serif, solid, spaceBetween, textDecoration, textTransform, uppercase, width, wrap)
 import Css.Global exposing (descendants, typeSelector)
 import Css.Transitions exposing (transition)
 import Data.PlaceCal.Events
@@ -12,9 +12,9 @@ import Helpers.TransRoutes as TransRoutes exposing (Route(..))
 import Html.Styled exposing (Html, a, article, button, div, h4, li, p, section, span, text, time, ul)
 import Html.Styled.Attributes exposing (css, href)
 import Html.Styled.Events
-import Skin.Global exposing (colorPrimary, colorSecondary, colorWhite, introTextLargeStyle)
+import Skin.Global exposing (colorSecondary, colorWhite, introTextLargeStyle, whiteButtonStyle)
 import Theme.GlobalLayout exposing (borderTransition, colorTransition, withMediaCanHover, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
-import Theme.Paginator exposing (buttonWidthFullWidth, buttonWidthMobile, buttonWidthTablet, paginationButtonStyle)
+import Theme.Paginator exposing (Msg)
 import Theme.RegionSelector
 import Time
 
@@ -113,7 +113,7 @@ viewEventsList localModel eventsList maybeListLength =
 
 viewEmptyEventText : Theme.Paginator.Filter -> Html Msg
 viewEmptyEventText filterBy =
-    p [ css [ introTextLargeStyle, color colorSecondary, important (maxWidth (px 636)) ] ]
+    p [ css [ introTextLargeStyle, color colorWhite, important (maxWidth (px 636)) ] ]
         [ text
             (case filterBy of
                 Theme.Paginator.Day _ ->
@@ -313,13 +313,5 @@ goToNextEventButtonStyle : Style
 goToNextEventButtonStyle =
     batch
         [ fontFamilies [ "cooper-black-std", .value serif ]
-        , important (width (px 200))
-        , paginationButtonStyle
-        , fontSize (rem 0.875)
-        , fontWeight (int 600)
-        , padding4 (rem 0.2) (rem 0.2) (rem 0.3) (rem 0.2)
-        , width (px buttonWidthMobile)
-        , backgroundColor colorPrimary
-        , withMediaTabletLandscapeUp [ width (px buttonWidthFullWidth), fontSize (rem 1.2) ]
-        , withMediaTabletPortraitUp [ width (px buttonWidthTablet), fontSize (rem 1) ]
+        , whiteButtonStyle
         ]

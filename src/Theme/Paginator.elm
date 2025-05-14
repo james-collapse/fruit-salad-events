@@ -77,7 +77,7 @@ viewPagination localModel =
                         (todayTomorrowNext5DaysPosix localModel.nowTime)
                     )
                 ]
-            , button [ css [ paginationArrowButtonRightStyle ], id "arrow-right", Html.Styled.Events.onClick ScrollRight ] [ img [ src "/images/icons/rightarrow.svg", css [ paginationRightArrowStyle ] ] [] ]
+            , button [ css [ paginationArrowButtonRightStyle ], id "arrow-right", Html.Styled.Events.onClick ScrollRight ] [ img [ src "/images/icons/rightarrow.svg", css [ paginationArrowStyle ] ] [] ]
             ]
         , div [ css [ paginationContainer ] ]
             [ ul [ css [ allEventsButtonListStyle ] ]
