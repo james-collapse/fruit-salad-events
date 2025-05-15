@@ -42,7 +42,6 @@ view sharedData localModel =
         [ viewIntroLogo
         , viewIntro (t IndexIntroTitle) (t IndexIntroMessage) (t IndexIntroButtonText)
         , viewFeatured localModel.nowTime (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
-        , viewLatestNews (List.head sharedData.articles) (t IndexNewsHeader) (t IndexNewsButtonText)
         ]
 
 
@@ -246,7 +245,17 @@ sectionTextStyle =
 eventsSectionStyle : Style
 eventsSectionStyle =
     batch
-        [ marginTop (px 125) ]
+        [ marginTop (px 240)
+        , marginBottom (px 240)
+        , withMediaMediumDesktopUp
+            [ marginBottom (px 230), marginTop (px 220) ]
+        , withMediaSmallDesktopUp
+            [ marginBottom (px 200) ]
+        , withMediaTabletLandscapeUp
+            [ marginTop (px 150), marginBottom (px 150) ]
+        , withMediaTabletPortraitUp
+            [ marginTop (px 175), marginBottom (px 175), paddingTop (rem 2), important (paddingBottom (rem 4)) ]
+        ]
 
 
 newsSectionStyle : Style
