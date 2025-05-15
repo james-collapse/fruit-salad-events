@@ -1,6 +1,6 @@
 module Theme.Page.About exposing (viewIntro, viewSections)
 
-import Css exposing (Style, absolute, after, alignItems, auto, backgroundImage, backgroundPosition, backgroundRepeat, backgroundSize, batch, before, block, bottom, calc, center, column, display, displayFlex, flexDirection, flexShrink, fontStyle, fontWeight, height, important, int, italic, justifyContent, left, margin, margin2, margin4, marginBottom, marginTop, minus, noRepeat, nthChild, padding, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, property, px, relative, rem, right, spaceAround, top, url, vw, width, zIndex)
+import Css exposing (Style, alignItems, auto, batch, center, column, displayFlex, flexDirection, flexShrink, fontStyle, height, int, italic, justifyContent, margin, margin2, margin4, marginBottom, marginTop, padding, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, px, relative, rem, spaceAround, top, url, width)
 import Css.Global exposing (descendants, typeSelector)
 import Html.Styled exposing (Html, a, div, h3, h4, img, p, section, text)
 import Html.Styled.Attributes exposing (alt, css, href, src)
@@ -35,7 +35,7 @@ viewAccessibility { title, subtitle, body } =
     section [ css [ contentWrapperStyle, accessibilityStyle ] ]
         [ h3 [ css [ smallFloatingTitleStyle, withMediaMobileOnly [ top (rem -4.5) ] ] ] [ text title ]
         , div [ css [ textBoxSecondaryStyle ] ] [ p [ css [ introTextLargeStyle ] ] [ text subtitle ] ]
-        , div [ css [ contentContainerStyle, aboutAccessibilityTextStyle ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
+        , div [ css [ contentContainerStyle, textStyle ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
         ]
 
 
@@ -53,7 +53,7 @@ viewMaker : { name : String, url : String, logo : String, body : List Markdown.B
 viewMaker { name, url, logo, body } =
     div [ css [ makerStyle, textBoxSecondaryStyle ] ]
         [ h4 [ css [ makerHeaderStyle ] ] [ img [ src logo, alt name, css [ makerLogoStyle ] ] [] ]
-        , div [ css [ normalFirstParagraphStyle ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
+        , div [ css [ normalFirstParagraphStyle, margin4 (rem 1) (rem 1) (rem 2.5) (rem 1) ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
         , p [ css [ buttonFloatingWrapperStyle ] ] [ a [ href url, css [ whiteButtonStyle ] ] [ text "Find out more" ] ]
         ]
 
@@ -77,7 +77,10 @@ viewAboutPlaceCal { title, subtitleimg, subtitleimgalt, body } =
 introTextStyle : Style
 introTextStyle =
     batch
-        [ textStyle
+        [ normalFirstParagraphStyle
+        , fontStyle italic
+        , margin2 (rem 2) (rem 1)
+        , Theme.PageTemplate.columnsStyle
         , position relative
         ]
 
@@ -87,33 +90,7 @@ textStyle =
     batch
         [ normalFirstParagraphStyle
         , fontStyle italic
-        , fontWeight (int 500)
-        , marginTop (rem 2)
-        , marginBottom (rem 2)
-        , descendants
-            [ typeSelector "p"
-                [ batch
-                    [ withMediaMobileOnly
-                        [ nthChild "3"
-                            [ paddingTop (px 200)
-                            , position relative
-                            , before
-                                [ property "content" "\"\""
-                                , display block
-                                , width (vw 100)
-                                , backgroundSize (px 420)
-                                , backgroundPosition center
-                                , position absolute
-                                , backgroundRepeat noRepeat
-                                , margin2 (rem 0) (rem -1.5)
-                                , height (px 230)
-                                , top (px -30)
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+        , margin2 (rem 2) (rem 2)
         , Theme.PageTemplate.columnsStyle
         ]
 
@@ -122,20 +99,15 @@ accessibilityStyle : Style
 accessibilityStyle =
     batch
         [ position relative
-        , marginTop (px 370)
+        , marginTop (px 250)
         , withMediaSmallDesktopUp
             [ marginTop (px 250) ]
         , withMediaTabletLandscapeUp
             [ marginTop (px 220) ]
         , withMediaTabletPortraitUp
             [ marginTop (px 200) ]
-        ]
-
-
-aboutAccessibilityTextStyle : Style
-aboutAccessibilityTextStyle =
-    batch
-        [ textStyle
+        , withMediaMobileOnly
+            [ marginTop (px 200) ]
         ]
 
 
@@ -151,7 +123,9 @@ makersStyle =
         , withMediaTabletLandscapeUp
             [ displayFlex, justifyContent spaceAround ]
         , withMediaTabletPortraitUp
-            [ marginTop (px 150) ]
+            [ marginTop (px 200) ]
+        , withMediaMobileOnly
+            [ marginTop (px 200) ]
         ]
 
 
@@ -207,12 +181,14 @@ placeCalStyle : Style
 placeCalStyle =
     batch
         [ position relative
-        , marginTop (px 530)
+        , marginTop (px 250)
         , withMediaMediumDesktopUp
             [ marginTop (px 250) ]
         , withMediaTabletLandscapeUp
             [ marginTop (px 230) ]
         , withMediaTabletPortraitUp
+            [ marginTop (px 200) ]
+        , withMediaMobileOnly
             [ marginTop (px 200) ]
         ]
 
