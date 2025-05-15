@@ -510,5 +510,5 @@ poweredByPlaceCalStyle : Style
 poweredByPlaceCalStyle =
     batch
         [ margin4 (rem 3) auto (rem 1) auto
-        , width (pct 15)
+        , width (px 180)
         ]
