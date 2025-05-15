@@ -57,7 +57,7 @@ viewPageFooterNavigation =
     nav [ css [ navStyle ] ]
         [ ul [ css [ navListStyle ] ]
             (List.map viewPageFooterNavigationItem
-                [ Events, Partners, News, About, Privacy, JoinUs ]
+                [ Events, Partners, About, Privacy, JoinUs ]
             )
         ]
 
@@ -509,4 +509,6 @@ creditLinkStyle =
 poweredByPlaceCalStyle : Style
 poweredByPlaceCalStyle =
     batch
-        [ margin4 (rem 3) auto (rem 1) auto ]
+        [ margin4 (rem 3) auto (rem 1) auto
+        , width (pct 15)
+        ]
