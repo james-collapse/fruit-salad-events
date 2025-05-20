@@ -24,7 +24,6 @@ viewPageFooter time =
             ]
         , div [ css [ footerMiddleSectionStyle ] ]
             [ viewPageFooterSocial
-            , viewPageFooterSignup
             , viewPageFooterLogos
             ]
         , div [ css [ footerBottomSectionStyle ] ]
@@ -216,7 +215,7 @@ footerMiddleSectionStyle =
         , property "grid-template-rows" "auto"
         , withMediaMediumDesktopUp [ padding2 (rem 1) (rem 12) ]
         , withMediaSmallDesktopUp
-            [ property "grid-template-columns" "4fr 6fr 4fr"
+            [ property "grid-template-columns" "4fr 4fr"
             , property "grid-template-rows" "1fr"
             , padding2 (rem 1) (rem 2)
             ]
@@ -225,8 +224,12 @@ footerMiddleSectionStyle =
             ]
         , withMediaTabletPortraitUp
             [ property "grid-template-columns" "1fr 1fr"
-            , property "grid-template-rows" "1fr 1fr"
+            , property "grid-template-rows" "1fr"
             , padding (rem 1)
+            ]
+        , withMediaMobileOnly
+            [ property "grid-template-columns" "1fr"
+            , property "grid-template-rows" "1fr 1fr"
             ]
         ]
 
@@ -279,12 +282,12 @@ createdByStyle =
         , padding (rem 1)
         , boxSizing borderBox
         , withMediaSmallDesktopUp
-            [ property "grid-column" "2 / 3"
+            [ property "grid-column" "1 / 2"
             , property "grid-row" "1 / 2"
             ]
         , withMediaTabletPortraitUp
-            [ property "grid-column" "1 / 3"
-            , property "grid-row" "2 / 3"
+            [ property "grid-column" "1 / 2"
+            , property "grid-row" "1 / 2"
             ]
         ]
 
