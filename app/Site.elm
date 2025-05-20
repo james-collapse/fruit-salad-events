@@ -37,8 +37,8 @@ head =
 manifest : Manifest.Config
 manifest =
     Manifest.init
-        { name = "The Trans Dimension"
-        , description = "An online community hub which will connect trans communities across the UK by collating news, events and services by and for trans people in one easy-to-reach place."
+        { name = "Fruit Salad Events"
+        , description = "Fruit Salad Events is a collective of LGBTQIA+ event organisers with a focus on connection, conversation and accessibility."
         , startUrl = Route.Index |> Route.toPath
         , icons =
             [ { src = pathFromString "/favicons/android-chrome-192x192.png"
