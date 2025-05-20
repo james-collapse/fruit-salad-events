@@ -1,6 +1,6 @@
 module Theme.Page.About exposing (viewIntro, viewSections)
 
-import Css exposing (Style, alignItems, auto, batch, center, column, displayFlex, flexDirection, flexShrink, fontStyle, height, int, italic, justifyContent, margin, margin2, margin4, marginBottom, marginTop, padding, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, px, relative, rem, spaceAround, top, url, width)
+import Css exposing (Style, alignItems, auto, batch, calc, center, column, displayFlex, flexDirection, flexShrink, fontStyle, height, int, italic, justifyContent, margin, margin2, margin4, marginBottom, marginTop, minus, padding, paddingBottom, paddingLeft, paddingRight, paddingTop, pct, position, px, relative, rem, spaceAround, top, url, width)
 import Css.Global exposing (descendants, typeSelector)
 import Html.Styled exposing (Html, a, div, h3, h4, img, p, section, text)
 import Html.Styled.Attributes exposing (alt, css, href, src)
@@ -54,7 +54,7 @@ viewMaker { name, url, logo, body } =
     div [ css [ makerStyle, textBoxSecondaryStyle ] ]
         [ h4 [ css [ makerHeaderStyle ] ] [ img [ src logo, alt name, css [ makerLogoStyle ] ] [] ]
         , div [ css [ normalFirstParagraphStyle, margin4 (rem 1) (rem 1) (rem 2.5) (rem 1) ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
-        , p [ css [ buttonFloatingWrapperStyle ] ] [ a [ href url, css [ whiteButtonStyle ] ] [ text "Find out more" ] ]
+        , p [ css [ buttonFloatingWrapperStyle, width (calc (pct 100) minus (rem 2)) ] ] [ a [ href url, css [ whiteButtonStyle ] ] [ text "Find out more" ] ]
         ]
 
 
@@ -70,7 +70,7 @@ viewAboutPlaceCal { title, subtitleimg, subtitleimgalt, body } =
                 ]
                 []
             ]
-        , div [ css [ Theme.PageTemplate.columnsStyle, contentContainerStyle, normalFirstParagraphStyle ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
+        , div [ css [ Theme.PageTemplate.columnsStyle, contentContainerStyle, textStyle, normalFirstParagraphStyle ] ] (Theme.TransMarkdown.markdownBlocksToHtml body)
         ]
 
 
