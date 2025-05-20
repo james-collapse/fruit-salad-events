@@ -19,7 +19,6 @@ import Theme.GlobalLayout
         , withMediaTabletPortraitUp
         )
 import Theme.Page.Events exposing (Msg, fromRegionSelectorMsg)
-import Theme.Page.News
 import Theme.Paginator
 import Theme.RegionSelector
 import Time
@@ -103,26 +102,6 @@ viewAllEventsButton =
             , css [ secondaryButtonOnDarkBackgroundStyle ]
             ]
             [ text (t IndexFeaturedButtonText) ]
-        ]
-
-
-viewLatestNews : Maybe Data.PlaceCal.Articles.Article -> String -> String -> Html msg
-viewLatestNews maybeNewsItem title buttonText =
-    section [ css [ sectionStyle, primaryBackgroundStyle, newsSectionStyle ] ]
-        [ h2 [ css [ smallFloatingTitleStyle ] ] [ text title ]
-        , case maybeNewsItem of
-            Just news ->
-                Theme.Page.News.viewNewsArticle news
-
-            Nothing ->
-                text ""
-        , p [ css [ buttonFloatingWrapperStyle, bottom (rem -6), width (calc (pct 100) minus (rem 2)) ] ]
-            [ a
-                [ href (Helpers.TransRoutes.toAbsoluteUrl Helpers.TransRoutes.News)
-                , css [ primaryButtonStyle ]
-                ]
-                [ text buttonText ]
-            ]
         ]
 
 

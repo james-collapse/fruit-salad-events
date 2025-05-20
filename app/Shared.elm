@@ -137,12 +137,6 @@ update msg model =
                 Just (Route.Events__Event_ _) ->
                     baseUpdate
 
-                Just Route.News ->
-                    baseUpdate
-
-                Just (Route.News__NewsItem_ _) ->
-                    baseUpdate
-
                 Just (Route.Partners__Partner_ _) ->
                     baseUpdate
 
