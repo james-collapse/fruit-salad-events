@@ -23,8 +23,8 @@ viewPageFooter time =
             , viewPageFooterNavigation
             ]
         , div [ css [ footerMiddleSectionStyle ] ]
-            [ viewPageFooterSocial
-            , viewPageFooterLogos
+            [ viewPageFooterLogos
+            , viewPageFooterSocial
             ]
         , div [ css [ footerBottomSectionStyle ] ]
             [ viewPageFooterCredit time

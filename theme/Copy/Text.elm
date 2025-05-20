@@ -13,7 +13,7 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "Fruit Salad Events Collective"
+            "Fruit Salad Events"
 
         SiteAcronym ->
             "FSEC"
@@ -261,7 +261,7 @@ t key =
             "Join us"
 
         JoinUsSubtitle ->
-            "Want to be listed on" ++ t SiteTitle ++ "?"
+            "Want to be listed on " ++ t SiteTitle ++ "?"
 
         JoinUsMetaDescription ->
             "[Join Us page meta description] Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
