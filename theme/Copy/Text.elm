@@ -121,7 +121,7 @@ t key =
             "[Home page meta description] Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean. "
 
         IndexIntroTitle ->
-            "Queer events from the community"
+            "Queer run events where connecting is prioritised"
 
         IndexIntroButtonText ->
             "See what's on"
