@@ -1,13 +1,12 @@
 module Theme.GlobalLayout exposing (backButtonStyle, backgroundColorTransition, baseButtonStyle, borderTransition, buttonFloatingWrapperStyle, colorTransition, containerPage, contentContainerStyle, mapImage, mapImageMulti, maxMobile, maxTabletPortrait, screenReaderOnly, withMediaCanHover, withMediaMediumDesktopUp, withMediaMobileOnly, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 
-import Color
-import Css exposing (Color, Style, absolute, active, alignItems, auto, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderColor, borderRadius, borderStyle, borderWidth, bottom, boxSizing, calc, center, color, cursor, display, displayFlex, em, firstChild, fitContent, flexDirection, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hex, hidden, hover, inlineBlock, int, italic, justifyContent, left, letterSpacing, lineHeight, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxContent, maxWidth, minus, none, outline, overflow, padding, padding2, padding4, paddingBottom, paddingLeft, paddingRight, pct, pointer, position, property, px, relative, rem, repeat, row, sansSerif, serif, solid, textAlign, textDecoration, textTransform, top, uppercase, url, width, zero)
-import Css.Global exposing (adjacentSiblings, descendants, global, typeSelector)
+import Css exposing (Style, absolute, auto, batch, block, borderRadius, borderStyle, borderWidth, bottom, center, display, fontFamilies, fontSize, fontWeight, height, hidden, int, left, margin, margin2, margin4, maxContent, maxWidth, none, overflow, padding4, pct, position, property, px, rem, serif, solid, textAlign, textDecoration, top, width, zero)
+import Css.Global
 import Css.Media as Media exposing (fine, only, screen, withMedia)
 import Css.Transitions exposing (Transition, linear, transition)
-import Html.Styled exposing (Html, a, div, img, input, label, p, text)
-import Html.Styled.Attributes exposing (alt, css, for, href, id, src, type_)
-import Html.Styled.Events exposing (onCheck)
+import Html.Styled exposing (Html, div, img, input, text)
+import Html.Styled.Attributes exposing (alt, css, id, src)
+import Html.Styled.Events
 
 
 
