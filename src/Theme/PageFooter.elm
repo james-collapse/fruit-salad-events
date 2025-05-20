@@ -56,7 +56,7 @@ viewPageFooterNavigation =
     nav [ css [ navStyle ] ]
         [ ul [ css [ navListStyle ] ]
             (List.map viewPageFooterNavigationItem
-                [ Events, Partners, About, Privacy, JoinUs ]
+                [ Events, Partners, About, Privacy ]
             )
         ]
 

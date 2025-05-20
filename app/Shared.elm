@@ -143,9 +143,6 @@ update msg model =
                 Just Route.About ->
                     baseUpdate
 
-                Just Route.JoinUs ->
-                    baseUpdate
-
                 Just Route.Privacy ->
                     baseUpdate
 
