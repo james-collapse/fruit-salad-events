@@ -118,7 +118,7 @@ t key =
             "Home"
 
         IndexMetaDescription ->
-            "[Home page meta description] Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean. "
+            "Events listings from LGBTQIA+ event organisers in London."
 
         IndexIntroTitle ->
             "Queer run events where connecting is prioritised"
@@ -211,7 +211,7 @@ t key =
             "Members of Fruit Salad Events Collective."
 
         PartnersIntroSummary ->
-            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for community platform and support."
+            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for a community platform and support."
 
         PartnersIntroDescription ->
             "Collective members can actively shape the collective - if you put on similar events - get in touch to join!"
@@ -264,10 +264,10 @@ t key =
             "Want to be listed on " ++ t SiteTitle ++ "?"
 
         JoinUsMetaDescription ->
-            "[Join Us page meta description] Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
+            "Contact form for organisations interested in partnering with Fruit Salad Events."
 
         JoinUsDescription ->
-            "[Join Us description]Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
+            "Fill out the form below and a member of our team will be in touch!"
 
         JoinUsFormInputNameLabel ->
             "Name"
