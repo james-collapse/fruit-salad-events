@@ -3,7 +3,7 @@ module Theme.Page.JoinUs exposing (Checkbox, FormError, FormInput, FormInputFiel
 import Constants exposing (joinUsFunctionUrl)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, auto, batch, block, borderBox, boxSizing, calc, center, color, column, display, displayFlex, em, flexDirection, flexShrink, flexWrap, fontSize, fontWeight, height, important, int, justifyContent, letterSpacing, lineHeight, margin, margin2, marginRight, marginTop, maxWidth, minus, padding2, pct, pseudoElement, px, rem, row, spaceBetween, textAlign, textTransform, uppercase, width, wrap)
+import Css exposing (Style, alignItems, auto, batch, block, borderBox, boxSizing, calc, center, color, column, display, displayFlex, em, flexDirection, flexShrink, flexWrap, fontSize, fontWeight, height, important, int, justifyContent, letterSpacing, lineHeight, margin, margin2, marginRight, marginTop, maxWidth, minus, noWrap, padding2, pct, pseudoElement, px, rem, row, spaceBetween, textAlign, textTransform, uppercase, width, wrap)
 import Effect exposing (Effect)
 import Html.Styled exposing (Html, button, div, form, input, label, p, span, text, textarea)
 import Html.Styled.Attributes exposing (css, placeholder, type_, value)
@@ -26,7 +26,10 @@ type alias Model =
 type FormInputType
     = Text
     | Email
-    | PhoneNumber
+
+
+
+-- | PhoneNumber
 
 
 type FormRequired
@@ -41,12 +44,14 @@ type FormError
 type alias FormInput =
     { name : FormInputField
     , email : FormInputField
-    , phone : FormInputField
-    , job : FormInputField
+
+    -- , phone : FormInputField
+    -- , job : FormInputField
     , org : FormInputField
-    , address : FormInputField
-    , ringBack : Checkbox
-    , moreInfo : Checkbox
+
+    -- , address : FormInputField
+    -- , ringBack : Checkbox
+    -- , moreInfo : Checkbox
     , message : FormInputField
     }
 
@@ -76,12 +81,12 @@ type alias Checkbox =
 type Msg
     = UpdateName String
     | UpdateEmail String
-    | UpdatePhone String
-    | UpdateJob String
+      -- | UpdatePhone String
+      -- | UpdateJob String
     | UpdateOrg String
-    | UpdateAddress String
-    | UpdateRingBack Bool
-    | UpdateMoreInfo Bool
+      -- | UpdateAddress String
+      -- | UpdateRingBack Bool
+      -- | UpdateMoreInfo Bool
     | UpdateMessage String
     | ErrorName FormError
     | ErrorEmail FormError
@@ -126,13 +131,16 @@ emailBody formData =
           , Json.Encode.object
                 [ ( "name", Json.Encode.string formData.name.value )
                 , ( "email", Json.Encode.string formData.email.value )
-                , ( "job", Json.Encode.string formData.job.value )
+
+                -- , ( "job", Json.Encode.string formData.job.value )
                 , ( "organisation", Json.Encode.string formData.org.value )
-                , ( "ringBack", Json.Encode.bool formData.ringBack.value )
-                , ( "moreInfo", Json.Encode.bool formData.moreInfo.value )
+
+                -- , ( "ringBack", Json.Encode.bool formData.ringBack.value )
+                -- , ( "moreInfo", Json.Encode.bool formData.moreInfo.value )
                 , ( "message", Json.Encode.string formData.message.value )
-                , ( "phone", Json.Encode.string formData.phone.value )
-                , ( "postcode", Json.Encode.string formData.address.value )
+
+                -- , ( "phone", Json.Encode.string formData.phone.value )
+                -- , ( "postcode", Json.Encode.string formData.address.value )
                 ]
           )
         ]
@@ -152,38 +160,40 @@ blankForm =
         , inputType = Email
         , required = Required
         }
-    , phone =
-        { value = ""
-        , error = Nothing
-        , inputType = PhoneNumber
-        , required = Required
-        }
-    , job =
-        { value = ""
-        , error = Nothing
-        , inputType = Text
-        , required = Required
-        }
+
+    -- , phone =
+    --     { value = ""
+    --     , error = Nothing
+    --     , inputType = PhoneNumber
+    --     , required = Required
+    --     }
+    -- , job =
+    --     { value = ""
+    --     , error = Nothing
+    --     , inputType = Text
+    --     , required = Required
+    --     }
     , org =
         { value = ""
         , error = Nothing
         , inputType = Text
         , required = Required
         }
-    , address =
-        { value = ""
-        , error = Nothing
-        , inputType = Text
-        , required = Required
-        }
-    , ringBack =
-        { value = False
-        , required = Optional
-        }
-    , moreInfo =
-        { value = False
-        , required = Optional
-        }
+
+    -- , address =
+    --     { value = ""
+    --     , error = Nothing
+    --     , inputType = Text
+    --     , required = Required
+    --     }
+    -- , ringBack =
+    --     { value = False
+    --     , required = Optional
+    --     }
+    -- , moreInfo =
+    --     { value = False
+    --     , required = Optional
+    --     }
     , message =
         { value = ""
         , error = Nothing
@@ -227,26 +237,22 @@ update _ _ msg ({ userInput } as model) =
             in
             ( { model | userInput = { userInput | email = newField } }, Effect.none )
 
-        UpdatePhone newString ->
-            let
-                oldField =
-                    userInput.phone
-
-                newField =
-                    { oldField | value = newString }
-            in
-            ( { model | userInput = { userInput | phone = newField } }, Effect.none )
-
-        UpdateJob newString ->
-            let
-                oldField =
-                    userInput.job
-
-                newField =
-                    { oldField | value = newString }
-            in
-            ( { model | userInput = { userInput | job = newField } }, Effect.none )
-
+        -- UpdatePhone newString ->
+        --     let
+        --         oldField =
+        --             userInput.phone
+        --         newField =
+        --             { oldField | value = newString }
+        --     in
+        --     ( { model | userInput = { userInput | phone = newField } }, Effect.none )
+        -- UpdateJob newString ->
+        --     let
+        --         oldField =
+        --             userInput.job
+        --         newField =
+        --             { oldField | value = newString }
+        --     in
+        --     ( { model | userInput = { userInput | job = newField } }, Effect.none )
         UpdateOrg newString ->
             let
                 oldField =
@@ -257,36 +263,30 @@ update _ _ msg ({ userInput } as model) =
             in
             ( { model | userInput = { userInput | org = newField } }, Effect.none )
 
-        UpdateAddress newString ->
-            let
-                oldField =
-                    userInput.address
-
-                newField =
-                    { oldField | value = newString }
-            in
-            ( { model | userInput = { userInput | address = newField } }, Effect.none )
-
-        UpdateRingBack newBool ->
-            let
-                oldField =
-                    userInput.ringBack
-
-                newField =
-                    { oldField | value = newBool }
-            in
-            ( { model | userInput = { userInput | ringBack = newField } }, Effect.none )
-
-        UpdateMoreInfo newBool ->
-            let
-                oldField =
-                    userInput.moreInfo
-
-                newField =
-                    { oldField | value = newBool }
-            in
-            ( { model | userInput = { userInput | moreInfo = newField } }, Effect.none )
-
+        -- UpdateAddress newString ->
+        --     let
+        --         oldField =
+        --             userInput.address
+        --         newField =
+        --             { oldField | value = newString }
+        --     in
+        --     ( { model | userInput = { userInput | address = newField } }, Effect.none )
+        -- UpdateRingBack newBool ->
+        --     let
+        --         oldField =
+        --             userInput.ringBack
+        --         newField =
+        --             { oldField | value = newBool }
+        --     in
+        --     ( { model | userInput = { userInput | ringBack = newField } }, Effect.none )
+        -- UpdateMoreInfo newBool ->
+        --     let
+        --         oldField =
+        --             userInput.moreInfo
+        --         newField =
+        --             { oldField | value = newBool }
+        --     in
+        --     ( { model | userInput = { userInput | moreInfo = newField } }, Effect.none )
         UpdateMessage newString ->
             let
                 oldField =
@@ -383,15 +383,17 @@ view state =
                 ]
                 []
             ]
-        , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputPhoneLabel) ], input [ css [ textInputStyle ], value state.userInput.phone.value, onInput UpdatePhone ] [] ]
-        , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputJobLabel) ], input [ css [ textInputStyle ], value state.userInput.job.value, onInput UpdateJob ] [] ]
+
+        -- , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputPhoneLabel) ], input [ css [ textInputStyle ], value state.userInput.phone.value, onInput UpdatePhone ] [] ]
+        -- , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputJobLabel) ], input [ css [ textInputStyle ], value state.userInput.job.value, onInput UpdateJob ] [] ]
         , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputOrgLabel) ], input [ css [ textInputStyle ], value state.userInput.org.value, onInput UpdateOrg ] [] ]
-        , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputAddressLabel) ], input [ css [ textInputStyle ], value state.userInput.address.value, onInput UpdateAddress ] [] ]
-        , div [ css [ formCheckboxWrapperStyle ] ]
-            [ p [ css [ formCheckboxTitleStyle ] ] [ text (t JoinUsFormCheckboxesLabel) ]
-            , div [] (viewCheckbox "joinbox1" (t JoinUsFormCheckbox1) state.userInput.ringBack.value UpdateRingBack)
-            , div [] (viewCheckbox "joinbox2" (t JoinUsFormCheckbox2) state.userInput.moreInfo.value UpdateMoreInfo)
-            ]
+
+        -- , label [ css [ formItemStyle ] ] [ span [ css [ formLabelStyle ] ] [ text (t JoinUsFormInputAddressLabel) ], input [ css [ textInputStyle ], value state.userInput.address.value, onInput UpdateAddress ] [] ]
+        -- , div [ css [ formCheckboxWrapperStyle ] ]
+        --     [ p [ css [ formCheckboxTitleStyle ] ] [ text (t JoinUsFormCheckboxesLabel) ]
+        --     , div [] (viewCheckbox "joinbox1" (t JoinUsFormCheckbox1) state.userInput.ringBack.value UpdateRingBack)
+        --     , div [] (viewCheckbox "joinbox2" (t JoinUsFormCheckbox2) state.userInput.moreInfo.value UpdateMoreInfo)
+        --     ]
         , label [ css [ formTextAreaItemStyle ] ]
             [ span [ css [ formTextAreaLabelStyle ] ] [ text (t JoinUsFormInputMessageLabel) ]
             , textarea
@@ -445,8 +447,10 @@ formStyle =
         , withMediaTabletLandscapeUp [ fontSize (rem 1.2) ]
         , withMediaTabletPortraitUp
             [ displayFlex
-            , flexWrap wrap
+            , flexDirection column
+            , flexWrap noWrap
             , justifyContent spaceBetween
+            , alignItems center
             ]
         ]
 
@@ -468,7 +472,7 @@ formTextAreaItemStyle : Style
 formTextAreaItemStyle =
     batch
         [ formItemStyle
-        , withMediaTabletPortraitUp [ important (width (pct 100)), flexDirection row ]
+        , withMediaTabletPortraitUp [ important (width (pct 75)), flexDirection column ]
         ]
 
 
@@ -525,8 +529,8 @@ textAreaStyle =
         , margin2 (rem 0.5) (rem 0)
         , padding2 (rem 1) (rem 1.5)
         , pseudoElement "placeholder" [ color colorWhite ]
-        , width (pct 100)
-        , withMediaTabletPortraitUp [ height (px 100) ]
+        , width auto
+        , withMediaTabletPortraitUp [ height (px 150) ]
         ]
 
 
