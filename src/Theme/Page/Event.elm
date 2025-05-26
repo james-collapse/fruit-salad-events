@@ -10,12 +10,13 @@ import Html.Styled exposing (Html, a, div, h4, hr, p, section, text, time)
 import Html.Styled.Attributes exposing (css, href, target)
 import Theme.Global exposing (linkStyle, normalFirstParagraphStyle, pink, smallInlineTitleStyle, withMediaMediumDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Theme.TransMarkdown
+import Time
 
 
-viewEventInfo : Data.PlaceCal.Events.Event -> Html msg
-viewEventInfo event =
+viewEventInfo : Data.PlaceCal.Events.Event -> Time.Zone -> Html msg
+viewEventInfo event timezone =
     div []
-        [ viewDateTimeSection event
+        [ viewDateTimeSection event timezone
         , hr [ css [ Theme.Global.hrStyle ] ] []
         , viewInfoSection event
         , hr [ css [ Theme.Global.hrStyle, marginTop (rem 2.5) ] ] []
@@ -36,11 +37,11 @@ viewEventInfo event =
         ]
 
 
-viewDateTimeSection : Data.PlaceCal.Events.Event -> Html msg
-viewDateTimeSection event =
+viewDateTimeSection : Data.PlaceCal.Events.Event -> Time.Zone -> Html msg
+viewDateTimeSection event timezone =
     section [ css [ dateAndTimeStyle ] ]
         [ p [ css [ dateStyle ] ] [ time [] [ text (Helpers.TransDate.humanDateFromPosix event.startDatetime) ] ]
-        , p [ css [ timeStyle ] ] [ time [] [ text (Helpers.TransDate.humanTimeFromPosix event.startDatetime), text " - ", text (Helpers.TransDate.humanTimeFromPosix event.endDatetime) ] ]
+        , p [ css [ timeStyle ] ] [ time [] [ text (Helpers.TransDate.humanTimeFromPosix event.startDatetime timezone), text " - ", text (Helpers.TransDate.humanTimeFromPosix event.endDatetime timezone) ] ]
         ]
 
 

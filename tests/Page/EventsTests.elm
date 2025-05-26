@@ -17,7 +17,7 @@ import Time
 
 viewEventsPageHtml filter =
     queryFromStyled
-        (EventsPage.viewEvents TestFixtures.events { filterByDate = Past, filterByRegion = filter, nowTime = Time.millisToPosix 1645466500000 })
+        (EventsPage.viewEvents TestFixtures.events { filterByDate = Past, filterByRegion = filter, nowTime = Time.millisToPosix 1645466500000, timezone = Time.utc })
 
 
 suite : Test

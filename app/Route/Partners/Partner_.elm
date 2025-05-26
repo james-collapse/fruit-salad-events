@@ -37,6 +37,7 @@ type alias Model =
     , nowTime : Time.Posix
     , viewportWidth : Float
     , urlFragment : Maybe String
+    , timezone : Time.Zone
     }
 
 
@@ -81,6 +82,7 @@ init app _ =
             , Task.perform GotViewport Browser.Dom.getViewport
                 |> Cmd.map Theme.Page.Events.fromPaginatorMsg
                 |> Effect.fromCmd
+            , Task.perform Theme.Page.Events.GetTimeZone Time.here |> Effect.fromCmd
             ]
     in
     ( { filterByDate = Theme.Paginator.None
@@ -88,6 +90,7 @@ init app _ =
       , nowTime = Time.millisToPosix 0
       , viewportWidth = 320
       , urlFragment = urlFragment
+      , timezone = Time.utc
       }
     , Effect.batch
         (case urlFragment of
@@ -174,6 +177,9 @@ update app _ msg model =
 
         Theme.Page.Events.ClickedGoToNextEvent nextEventTime ->
             ( { model | filterByDate = Theme.Paginator.Day nextEventTime }, Effect.none )
+
+        Theme.Page.Events.GetTimeZone zone ->
+            ( { model | timezone = zone }, Effect.none )
 
 
 subscriptions : RouteParams -> UrlPath.UrlPath -> Shared.Model -> Model -> Sub Msg

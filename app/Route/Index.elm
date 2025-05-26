@@ -124,7 +124,7 @@ view :
     -> Shared.Model
     -> Model
     -> View.View (PagesMsg.PagesMsg Msg)
-view app _ model =
+view app shared model =
     { title = t SiteTitle
     , body =
         let
@@ -136,6 +136,7 @@ view app _ model =
                 , partners = sharedData.partners
                 , articles = sharedData.articles
                 , time = sharedData.time
+                , timezone = shared.timezone
                 }
         in
         [ Theme.Page.Index.view sharedDataWithEvents model

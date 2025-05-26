@@ -25,7 +25,7 @@ import Theme.Page.Events
 import Theme.PageTemplate
 import Theme.Paginator
 import Theme.RegionSelector
-import Time
+import Time exposing (utc)
 import UrlPath
 import View exposing (View)
 
@@ -34,6 +34,7 @@ type alias Model =
     { filterByDate : Theme.Paginator.Filter
     , filterByRegion : Int
     , nowTime : Time.Posix
+    , timezone : Time.Zone
     , viewportWidth : Float
     }
 
@@ -54,11 +55,13 @@ init app shared =
     ( { filterByDate = Theme.Paginator.None
       , filterByRegion = Maybe.withDefault 0 shared.filterParam
       , nowTime = Time.millisToPosix 0
+      , timezone = utc
       , viewportWidth = 320
       }
     , Effect.batch
         [ Task.perform Theme.Paginator.GetTime Time.now |> Cmd.map Theme.Page.Events.fromPaginatorMsg |> Effect.fromCmd
         , Task.perform Theme.Paginator.GotViewport Browser.Dom.getViewport |> Cmd.map Theme.Page.Events.fromPaginatorMsg |> Effect.fromCmd
+        , Task.perform Theme.Page.Events.GetTimeZone Time.here |> Effect.fromCmd
         ]
     )
 
@@ -143,6 +146,9 @@ update app _ msg model =
 
         Theme.Page.Events.ClickedGoToNextEvent nextEventTime ->
             ( { model | filterByDate = Theme.Paginator.Day nextEventTime }, Effect.none, Nothing )
+
+        Theme.Page.Events.GetTimeZone zone ->
+            ( { model | timezone = zone }, Effect.none, Nothing )
 
 
 subscriptions : RouteParams -> UrlPath.UrlPath -> Shared.Model -> Model -> Sub Msg

@@ -22,6 +22,7 @@ view :
     , partners : List Data.PlaceCal.Partners.Partner
     , articles : List Data.PlaceCal.Articles.Article
     , time : Time.Posix
+    , timezone : Time.Zone
     }
     ->
         { localModel
@@ -32,7 +33,7 @@ view :
 view sharedData localModel =
     div [ css [ pageWrapperStyle ] ]
         [ viewIntro (t IndexIntroTitle) (t IndexIntroMessage) (t IndexIntroButtonText)
-        , viewFeatured localModel.nowTime (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
+        , viewFeatured localModel.nowTime sharedData.timezone (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
         , viewLatestNews (List.head sharedData.articles) (t IndexNewsHeader) (t IndexNewsButtonText)
         ]
 
@@ -60,8 +61,8 @@ viewIntro introTitle introMsg eventButtonText =
         ]
 
 
-viewFeatured : Time.Posix -> List Data.PlaceCal.Events.Event -> Int -> Html Msg
-viewFeatured fromTime eventList regionId =
+viewFeatured : Time.Posix -> Time.Zone -> List Data.PlaceCal.Events.Event -> Int -> Html Msg
+viewFeatured fromTime timezone eventList regionId =
     section [ css [ sectionStyle, Theme.Global.darkBlueBackgroundStyle, eventsSectionStyle ] ]
         [ h2 [ css [ Theme.Global.smallFloatingTitleStyle ] ] [ text (t IndexFeaturedHeader) ]
         , if List.length Data.PlaceCal.Partners.partnershipTagList > 1 then
@@ -69,7 +70,7 @@ viewFeatured fromTime eventList regionId =
 
           else
             text ""
-        , Theme.Page.Events.viewEventsList { filterByDate = Theme.Paginator.Future, filterByRegion = regionId, nowTime = fromTime } eventList (Just 8)
+        , Theme.Page.Events.viewEventsList { filterByDate = Theme.Paginator.Future, filterByRegion = regionId, nowTime = fromTime, timezone = timezone } eventList (Just 8)
         , viewAllEventsButton
         ]
 
