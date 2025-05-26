@@ -19,6 +19,7 @@ viewInfo :
         | filterByDate : Theme.Paginator.Filter
         , filterByRegion : Int
         , nowTime : Time.Posix
+        , timezone : Time.Zone
     }
     ->
         { partner : Data.PlaceCal.Partners.Partner
@@ -65,6 +66,7 @@ viewPartnerEvents :
             | filterByDate : Theme.Paginator.Filter
             , filterByRegion : Int
             , nowTime : Time.Posix
+            , timezone : Time.Zone
         }
     -> Data.PlaceCal.Partners.Partner
     -> Html Theme.Page.Events.Msg

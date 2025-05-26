@@ -19,6 +19,7 @@ import RouteBuilder
 import Shared
 import Theme.Page.Event
 import Theme.PageTemplate
+import Time exposing (utc)
 import View
 
 
@@ -89,7 +90,7 @@ eventMetaTagTitle event =
             TransDate.humanDayDateMonthFromPosix event.startDatetime
 
         ( eventHourStart, eventHourEnd ) =
-            ( TransDate.humanTimeFromPosix event.startDatetime, TransDate.humanTimeFromPosix event.endDatetime )
+            ( TransDate.humanTimeFromPosix event.startDatetime utc, TransDate.humanTimeFromPosix event.endDatetime utc )
 
         partnerName =
             event.partner.name |> Maybe.withDefault ""
@@ -101,7 +102,7 @@ view :
     RouteBuilder.App Data ActionData RouteParams
     -> Shared.Model
     -> View.View (PagesMsg.PagesMsg Msg)
-view app _ =
+view app model =
     let
         event : Data.PlaceCal.Events.Event
         event =
@@ -115,7 +116,7 @@ view app _ =
             , title = t EventsTitle
             , bigText = { text = event.name, node = "h3" }
             , smallText = Nothing
-            , innerContent = Just (Theme.Page.Event.viewEventInfo event)
+            , innerContent = Just (Theme.Page.Event.viewEventInfo event model.timezone)
             , outerContent = Just (Theme.Page.Event.viewButtons event)
             }
         ]
