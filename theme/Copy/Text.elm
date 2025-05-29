@@ -121,7 +121,7 @@ t key =
             "Events listings from LGBTQIA+ event organisers in London."
 
         IndexIntroTitle ->
-            "Queer run events where connecting is prioritised"
+            "Queer-run events that prioritise connection"
 
         IndexIntroButtonText ->
             "See what's on"
