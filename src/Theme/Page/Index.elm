@@ -41,7 +41,7 @@ view sharedData localModel =
     div [ css [ pageWrapperStyle ] ]
         [ viewIntroLogo
         , viewIntro (t IndexIntroTitle) (t IndexIntroMessage) (t IndexIntroButtonText)
-        , viewFeatured localModel.nowTime (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
+        , viewFeatured localModel.nowTime sharedData.timezone (Data.PlaceCal.Events.eventsWithPartners sharedData.events sharedData.partners) localModel.filterByRegion
         ]
 
 
