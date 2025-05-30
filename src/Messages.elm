@@ -1,5 +1,6 @@
 module Messages exposing (Msg(..), SharedMsg(..))
 
+import Time
 import UrlPath exposing (UrlPath)
 
 
@@ -15,6 +16,7 @@ type Msg
     | SharedMsg SharedMsg
     | SetRegion Int
     | UrlChanged String
+    | GetTimeZone Time.Zone
 
 
 type SharedMsg

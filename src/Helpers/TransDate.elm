@@ -141,8 +141,8 @@ humanShortMonthFromPosix timestamp =
             timestamp
 
 
-humanTimeFromPosix : Time.Posix -> String
-humanTimeFromPosix timestamp =
+humanTimeFromPosix : Time.Posix -> Time.Zone -> String
+humanTimeFromPosix timestamp timezone =
     if timestamp == defaultPosix then
         "Invalid time"
 
@@ -153,7 +153,7 @@ humanTimeFromPosix timestamp =
             , DateFormat.minuteFixed
             , DateFormat.amPmLowercase
             ]
-            convertedIsoDateZone
+            timezone
             timestamp
 
 

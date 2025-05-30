@@ -12,12 +12,13 @@ import Html.Styled.Attributes exposing (css, href, target)
 import Skin.Global exposing (colorSecondary, hrStyle, linkStyle, mapImage, normalFirstParagraphStyle, smallInlineTitleStyle, viewBackButton)
 import Theme.GlobalLayout exposing (withMediaMediumDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Theme.TransMarkdown
+import Time
 
 
-viewEventInfo : Data.PlaceCal.Events.Event -> Html msg
-viewEventInfo event =
+viewEventInfo : Data.PlaceCal.Events.Event -> Time.Zone -> Html msg
+viewEventInfo event timezone =
     div []
-        [ viewDateTimeSection event
+        [ viewDateTimeSection event timezone
         , hr [ css [ hrStyle ] ] []
         , viewInfoSection event
         , hr [ css [ hrStyle, marginTop (rem 2.5) ] ] []
@@ -38,11 +39,11 @@ viewEventInfo event =
         ]
 
 
-viewDateTimeSection : Data.PlaceCal.Events.Event -> Html msg
-viewDateTimeSection event =
+viewDateTimeSection : Data.PlaceCal.Events.Event -> Time.Zone -> Html msg
+viewDateTimeSection event timezone =
     section [ css [ dateAndTimeStyle ] ]
         [ p [ css [ dateStyle ] ] [ time [] [ text (Helpers.TransDate.humanDateFromPosix event.startDatetime) ] ]
-        , p [ css [ timeStyle ] ] [ time [] [ text (Helpers.TransDate.humanTimeFromPosix event.startDatetime), text " - ", text (Helpers.TransDate.humanTimeFromPosix event.endDatetime) ] ]
+        , p [ css [ timeStyle ] ] [ time [] [ text (Helpers.TransDate.humanTimeFromPosix event.startDatetime timezone), text " - ", text (Helpers.TransDate.humanTimeFromPosix event.endDatetime timezone) ] ]
         ]
 
 

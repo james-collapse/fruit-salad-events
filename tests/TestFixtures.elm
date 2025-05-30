@@ -21,6 +21,7 @@ sharedModelInit : Shared.Model
 sharedModelInit =
     { showMobileMenu = False
     , filterParam = Nothing
+    , timezone = Time.utc
     }
 
 

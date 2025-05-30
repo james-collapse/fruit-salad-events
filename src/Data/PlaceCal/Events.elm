@@ -241,6 +241,7 @@ singleEventQuery eventId =
                     description
                     startDate
                     endDate
+                    publisherUrl
                     address {
                       streetAddress
                       postalCode

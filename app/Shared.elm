@@ -3,7 +3,6 @@ port module Shared exposing (Data, Model, Msg, template)
 import BackendTask exposing (BackendTask)
 import BackendTask.Time
 import Data.PlaceCal.Articles
-import Data.PlaceCal.Events
 import Data.PlaceCal.Partners
 import Dict
 import Effect exposing (Effect)
@@ -16,6 +15,7 @@ import Pages.PageUrl exposing (PageUrl)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Skin.Global exposing (globalStyles)
+import Task
 import Theme.GlobalLayout exposing (containerPage)
 import Theme.PageFooter exposing (viewPageFooter)
 import Theme.PageHeader exposing (viewPageHeader)
@@ -61,6 +61,7 @@ type alias Msg =
 type alias Model =
     { showMobileMenu : Bool
     , filterParam : Maybe Int
+    , timezone : Time.Zone
     }
 
 
@@ -80,8 +81,9 @@ init :
 init flags maybePagePath =
     ( { showMobileMenu = False
       , filterParam = filterFromPath maybePagePath
+      , timezone = Time.utc
       }
-    , Effect.none
+    , Task.perform Messages.GetTimeZone Time.here |> Effect.fromCmd
     )
 
 
@@ -184,6 +186,9 @@ update msg model =
                     Data.PlaceCal.Partners.filterFromQueryString (filterFromQueryParams queryParamsFromUrl)
             in
             ( { model | filterParam = maybeRegionId }, Effect.none )
+
+        GetTimeZone zone ->
+            ( { model | timezone = zone }, Effect.none )
 
 
 updateRegionFilter : Maybe Int -> ( Model, Effect Msg ) -> ( Model, Effect Msg )

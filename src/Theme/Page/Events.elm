@@ -23,6 +23,7 @@ type Msg
     = PaginatorMsg Theme.Paginator.Msg
     | RegionSelectorMsg Theme.RegionSelector.Msg
     | ClickedGoToNextEvent Time.Posix
+    | GetTimeZone Time.Zone
 
 
 fromPaginatorMsg : Theme.Paginator.Msg -> Msg
@@ -42,6 +43,7 @@ viewEvents :
             | filterByDate : Theme.Paginator.Filter
             , filterByRegion : Int
             , nowTime : Time.Posix
+            , timezone : Time.Zone
         }
     -> Html Msg
 viewEvents eventsList model =
@@ -61,6 +63,7 @@ viewEventsList :
         | filterByDate : Theme.Paginator.Filter
         , filterByRegion : Int
         , nowTime : Time.Posix
+        , timezone : Time.Zone
     }
     -> List Data.PlaceCal.Events.Event
     -> Maybe Int
@@ -91,7 +94,7 @@ viewEventsList localModel eventsList maybeListLength =
     div []
         [ if List.length filteredEvents > 0 then
             ul [ css [ eventsListStyle ] ]
-                (List.map (\event -> viewEvent event) filteredEvents)
+                (List.map (\event -> viewEvent event localModel.timezone) filteredEvents)
                 |> Html.Styled.map fromPaginatorMsg
 
           else
@@ -128,8 +131,8 @@ viewEmptyEventText filterBy =
         ]
 
 
-viewEvent : Data.PlaceCal.Events.Event -> Html msg
-viewEvent event =
+viewEvent : Data.PlaceCal.Events.Event -> Time.Zone -> Html msg
+viewEvent event timezone =
     li [ css [ eventsListItemStyle ] ]
         [ a [ css [ eventLinkStyle ], href (TransRoutes.toAbsoluteUrl (Event event.id)) ]
             [ article [ css [ eventStyle ] ]
@@ -137,9 +140,9 @@ viewEvent event =
                     [ h4 [ css [ eventTitleStyle ] ] [ text event.name ]
                     , div []
                         [ p [ css [ eventParagraphStyle ] ]
-                            [ time [] [ text (TransDate.humanTimeFromPosix event.startDatetime) ]
+                            [ time [] [ text (TransDate.humanTimeFromPosix event.startDatetime timezone) ]
                             , span [] [ text " — " ]
-                            , time [] [ text (TransDate.humanTimeFromPosix event.endDatetime) ]
+                            , time [] [ text (TransDate.humanTimeFromPosix event.endDatetime timezone) ]
                             ]
                         , case event.location of
                             Just aLocation ->
