@@ -8,7 +8,7 @@ type Prefix
 
 type Key
     = SiteTitle
-    | SiteStrapline
+    | SiteAcronym
     | PartnershipDescription
     | SiteLogoSrc
     | PageMetaTitle String
@@ -36,6 +36,7 @@ type Key
     | FooterInfoCompany
     | FooterInfoOffice
     | FooterCreditTitle
+    | FooterCreditText
     | FooterCredit1Text
     | FooterCredit1Name
     | FooterCredit1Link
@@ -80,7 +81,7 @@ type Key
     | EventMetaDescription String
     | BackToPartnerEventsLinkText (Maybe String)
     | BackToEventsLinkText
-    | EventVisitPublisherUrlText (Maybe String)
+    | EventVisitPublisherUrlText
       --- Partners Page
     | PartnersTitle
     | PartnersMetaDescription

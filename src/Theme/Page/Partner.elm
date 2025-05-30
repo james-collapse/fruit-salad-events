@@ -3,7 +3,7 @@ module Theme.Page.Partner exposing (viewInfo)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Copy.Utils exposing (urlToDisplay)
-import Css exposing (Style, auto, batch, calc, center, color, displayFlex, fontStyle, important, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxWidth, minus, normal, pct, px, rem, textAlign, width)
+import Css exposing (Style, auto, batch, calc, center, color, displayFlex, fontStyle, important, italic, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxWidth, minus, pct, px, rem, textAlign, width)
 import Data.PlaceCal.Events
 import Data.PlaceCal.Partners
 import Html.Styled exposing (Html, a, address, div, h3, hr, p, section, span, text)
@@ -248,7 +248,7 @@ contactItemStyle : Style
 contactItemStyle =
     batch
         [ textAlign center
-        , fontStyle normal
+        , fontStyle italic
         , marginBlockStart (rem 0)
         , marginBlockEnd (rem 0)
         ]

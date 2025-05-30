@@ -2,14 +2,14 @@ module Theme.Page.Partners exposing (viewPartners)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, backgroundColor, batch, bold, borderBottomColor, borderBottomStyle, borderBottomWidth, borderRadius, calc, center, color, display, displayFlex, flexEnd, flexWrap, fontSize, fontStyle, fontWeight, hover, inlineBlock, int, italic, justifyContent, letterSpacing, margin2, marginBottom, marginLeft, marginRight, minus, none, padding, padding2, pct, px, rem, solid, spaceBetween, textAlign, textDecoration, textTransform, uppercase, width, wrap)
+import Css exposing (Style, alignItems, backgroundColor, batch, bold, borderBottomColor, borderBottomStyle, borderBottomWidth, borderRadius, calc, center, color, display, displayFlex, flexEnd, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, inlineBlock, int, italic, justifyContent, letterSpacing, margin2, marginBottom, marginLeft, marginRight, minus, none, padding, padding2, paddingBottom, pct, px, rem, serif, solid, spaceBetween, textAlign, textDecoration, textTransform, uppercase, width, wrap)
 import Css.Global exposing (descendants, typeSelector)
 import Css.Transitions exposing (transition)
 import Data.PlaceCal.Partners
 import Helpers.TransRoutes as TransRoutes exposing (Route(..))
 import Html.Styled exposing (Html, a, div, h3, h4, li, p, section, span, styled, text, ul)
 import Html.Styled.Attributes exposing (css, href)
-import Skin.Global exposing (colorAccent, colorAccentDark, colorSecondary, colorWhite, mapImageMulti)
+import Skin.Global exposing (colorAccent, colorPrimary, colorSecondary, colorWhite, mapImageMulti)
 import Theme.GlobalLayout exposing (borderTransition, colorTransition, withMediaCanHover, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Theme.RegionSelector
 
@@ -31,7 +31,6 @@ viewPartners partnerList model =
           else
             text ""
         , viewPartnerList filteredPartnerList
-        , viewMap filteredPartnerList
         ]
 
 
@@ -147,8 +146,8 @@ areaDistrictString address =
 partnerAreaTagSpan : List (Html.Styled.Attribute msg) -> List (Html msg) -> Html msg
 partnerAreaTagSpan =
     styled span
-        [ backgroundColor colorAccentDark
-        , color colorSecondary
+        [ backgroundColor colorAccent
+        , color colorPrimary
         , display inlineBlock
         , marginLeft (rem 0.5)
         , padding2 (rem 0.25) (rem 0.5)
@@ -169,6 +168,7 @@ partnersListTitleStyle =
     batch
         [ color colorWhite
         , textTransform uppercase
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.2)
         , letterSpacing (px 1.9)
         , textAlign center
@@ -240,8 +240,8 @@ partnerLink =
 partnerNameStyle : Style
 partnerNameStyle =
     batch
-        [ fontSize (rem 1.2)
-        , fontStyle italic
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , fontSize (rem 1.2)
         , color colorWhite
         , transition [ colorTransition ]
         , withMediaTabletPortraitUp [ fontSize (rem 1.5) ]
@@ -252,6 +252,7 @@ partnerDescriptionStyle : Style
 partnerDescriptionStyle =
     batch
         [ fontSize (rem 0.8777)
+        , fontStyle italic
         , marginRight (rem 1)
         , withMediaTabletPortraitUp [ fontSize (rem 1.2) ]
         ]

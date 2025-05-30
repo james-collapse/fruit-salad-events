@@ -1,11 +1,9 @@
 ---
 name: "[Partnership organisation name]"
-logo: "/images/logos/site_logo_footer.svg"
+logo: "/images/logos/fsec_logo_small_blue.svg"
 url: "https://your-website.example.com"
 ---
 
-[Brief bit about your organisation]
+Fruit Salad Events is a collective of LGBTQIA+ event organisers with a focus on connection, conversation and accessibility.
 
-Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
-
-Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Our members worked in partnership with Geeks for Social Change to design and build this website.

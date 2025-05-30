@@ -12,7 +12,7 @@ import Time
 headFixture _ =
     Theme.PageTemplate.pageMetaTags
         { title = SiteTitle
-        , description = SiteStrapline
+        , description = SiteTitle
         , imageSrc = Nothing
         }
 

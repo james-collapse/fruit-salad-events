@@ -1,6 +1,6 @@
 ---
 name: "Geeks for Social Change"
-logo: "/images/logos/about_gfsc_white.svg"
+logo: "/images/logos/about_gfsc_blue.svg"
 url: "https://gfsc.studio"
 ---
 

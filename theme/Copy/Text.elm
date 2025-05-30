@@ -13,15 +13,15 @@ t : Key -> String
 t key =
     case key of
         SiteTitle ->
-            "[Site title]"
+            "Fruit Salad Events"
 
-        SiteStrapline ->
-            "[Site strapline] Lorem ipsum dolor sit amet consectetur adipiscing elit."
+        SiteAcronym ->
+            "FSEC"
 
         PartnershipDescription ->
             -- Note this is also in content/about/main.md
             -- If they should remain in sync, we should remove from there
-            "[Partnership despription] Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."
+            "Fruit Salad Events is a collective of LGBTQIA+ event organisers who bring you all sorts of events that are designed with conversation and connection in mind, and a focus on accessibility."
 
         PartnerOrganisationHomeUrl ->
             "[Partnership Organisation website] https://example.co.uk/"
@@ -42,10 +42,10 @@ t key =
 
         --- Footer
         FooterSocial ->
-            "Follow us out there"
+            "Follow us"
 
         FooterInstaLink ->
-            "https://www.instagram.com/[Instagram handle]"
+            "https://www.instagram.com/fruitsaladeventsco/"
 
         FooterTwitterLink ->
             "https://twitter.com/[Twitter X handle]"
@@ -78,7 +78,10 @@ t key =
             "[Partnership organisation registered office]"
 
         FooterCreditTitle ->
-            "[Credits or blank]"
+            "Credits"
+
+        FooterCreditText ->
+            "Website by"
 
         FooterCredit1Text ->
             "[e.g. Illustrations by]"
@@ -108,17 +111,17 @@ t key =
             t GeeksForSocialChangeHomeUrl
 
         FooterCopyright year ->
-            "© " ++ year ++ " [Partnership organisation] All rights reserved."
+            "© " ++ year ++ " Fruit Salad Events Collective. All rights reserved."
 
         --- Index Page
         IndexTitle ->
             "Home"
 
         IndexMetaDescription ->
-            "[Home page meta description] Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean. "
+            "Events listings from LGBTQIA+ event organisers in London."
 
         IndexIntroTitle ->
-            "[Home page intro text] Placerat in id cursus.Pretium tellus duis. Convallis tempus leo eu aenean. "
+            "Queer-run events that prioritise connection"
 
         IndexIntroButtonText ->
             "See what's on"
@@ -147,10 +150,10 @@ t key =
             "Events"
 
         EventsMetaDescription ->
-            "Events and activities by and for [who? where?]."
+            "Events and activities from our collective members in London."
 
         EventsSummary ->
-            "Upcoming events & activities"
+            "Upcoming events from our collective"
 
         EventsSubHeading ->
             "Upcoming events"
@@ -197,21 +200,21 @@ t key =
         BackToEventsLinkText ->
             "All events"
 
-        EventVisitPublisherUrlText maybePartnerName ->
-            "Visit " ++ Maybe.withDefault "Publisher" maybePartnerName ++ "'s site"
+        EventVisitPublisherUrlText ->
+            "View event"
 
         --- Partners Page
         PartnersTitle ->
             "Partners"
 
         PartnersMetaDescription ->
-            "[Partner listing meta description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+            "Members of Fruit Salad Events Collective."
 
         PartnersIntroSummary ->
-            "[Partner listing intro summary] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu."
+            "Fruit Salad Events is a collective where LGBTQIA+ event organisers can come together for a community platform and support."
 
         PartnersIntroDescription ->
-            "[Partner listing intro description] Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
+            "Collective members can actively shape the collective - if you put on similar events - get in touch to join!"
 
         PartnersListHeading ->
             "All partners"
@@ -258,13 +261,13 @@ t key =
             "Join us"
 
         JoinUsSubtitle ->
-            "Want to be listed on" ++ t SiteTitle ++ "?"
+            "Want to be listed on " ++ t SiteTitle ++ "?"
 
         JoinUsMetaDescription ->
-            "[Join Us page meta description] Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
+            "Contact form for organisations interested in partnering with Fruit Salad Events."
 
         JoinUsDescription ->
-            "[Join Us description]Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas."
+            "Fill out the form below and a member of our team will be in touch!"
 
         JoinUsFormInputNameLabel ->
             "Name"

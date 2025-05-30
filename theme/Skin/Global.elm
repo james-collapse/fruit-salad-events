@@ -1,7 +1,7 @@
 module Skin.Global exposing (colorAccent, colorAccentDark, colorPrimary, colorPrimaryRgb, colorSecondary, colorSecondaryHexString, colorSecondaryRgb, colorWhite, contentWrapperStyle, globalStyles, hrStyle, introTextLargeStyle, introTextSmallStyle, linkStyle, mapImage, mapImageMulti, normalFirstParagraphStyle, primaryBackgroundStyle, primaryButtonStyle, secondaryBackgroundStyle, secondaryButtonOnDarkBackgroundStyle, secondaryButtonOnLightBackgroundStyle, smallFloatingTitleStyle, smallInlineTitleStyle, textBoxInvisibleStyle, textBoxSecondaryStyle, textInputErrorStyle, textInputStyle, viewBackButton, viewCheckbox, whiteButtonStyle)
 
 import Color
-import Css exposing (Color, Style, absolute, active, alignItems, auto, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderColor, borderRadius, borderStyle, borderWidth, bottom, boxSizing, calc, center, color, cursor, display, displayFlex, em, firstChild, fitContent, flexDirection, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hex, hidden, hover, inlineBlock, int, italic, justifyContent, left, letterSpacing, lineHeight, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxContent, maxWidth, minus, none, outline, overflow, padding, padding2, padding4, paddingBottom, paddingLeft, paddingRight, pct, pointer, position, property, px, relative, rem, repeat, row, sansSerif, solid, textAlign, textDecoration, textTransform, top, uppercase, url, width, zero)
+import Css exposing (Color, Style, absolute, active, alignItems, auto, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, batch, block, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderColor, borderRadius, borderStyle, borderWidth, bottom, boxSizing, calc, center, color, cursor, display, displayFlex, em, firstChild, fitContent, flexDirection, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hex, hidden, hover, inlineBlock, int, italic, justifyContent, left, letterSpacing, lineHeight, margin, margin2, margin4, marginBlockEnd, marginBlockStart, marginTop, maxContent, maxWidth, minus, none, outline, overflow, padding, padding2, padding4, paddingBottom, paddingLeft, paddingRight, pct, pointer, position, property, px, relative, rem, repeat, row, sansSerif, serif, solid, textAlign, textDecoration, textTransform, top, uppercase, url, width, zero)
 import Css.Global exposing (adjacentSiblings, descendants, global, typeSelector)
 import Css.Transitions exposing (Transition, linear, transition)
 import Html.Styled exposing (Html, a, div, img, input, label, p, text)
@@ -20,22 +20,22 @@ import Theme.GlobalLayout exposing (withMediaCanHover, withMediaMediumDesktopUp,
 
 colorPrimaryRgb : Color.Color
 colorPrimaryRgb =
-    Color.rgb255 97 97 97
+    Color.rgb255 10 0 51
 
 
 colorSecondaryRgb : Color.Color
 colorSecondaryRgb =
-    Color.rgb255 229 229 229
+    Color.rgb255 100 44 72
 
 
 colorSecondaryHexString : String
 colorSecondaryHexString =
-    "E5E5E5"
+    "FF70B8"
 
 
 colorPrimary : Color
 colorPrimary =
-    hex "616161"
+    hex "1A0081"
 
 
 colorSecondary : Color
@@ -50,7 +50,7 @@ colorSecondaryLight =
 
 colorAccent : Color
 colorAccent =
-    hex "C0C2CE"
+    hex "FFBD00"
 
 
 colorAccentDark : Color
@@ -80,7 +80,7 @@ whiteButtonStyle =
         , backgroundColor colorWhite
         , color colorPrimary
         , borderColor colorWhite
-        , withMediaCanHover [ hover [ backgroundColor colorAccent, color colorWhite ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, color colorPrimary, borderColor colorAccent ] ]
         , active [ backgroundColor colorPrimary, color colorWhite ]
         , focus [ backgroundColor colorPrimary, color colorWhite ]
         ]
@@ -93,7 +93,7 @@ primaryButtonStyle =
         , backgroundColor colorPrimary
         , color colorWhite
         , borderColor colorSecondary
-        , Theme.GlobalLayout.withMediaCanHover [ hover [ backgroundColor colorAccent, color colorWhite, borderColor colorWhite ] ]
+        , Theme.GlobalLayout.withMediaCanHover [ hover [ backgroundColor colorAccent, color colorPrimary, borderColor colorAccent ] ]
         , active [ backgroundColor colorSecondary, color colorPrimary, borderColor colorWhite ]
         , focus [ backgroundColor colorSecondary, color colorPrimary, borderColor colorWhite ]
         ]
@@ -106,7 +106,7 @@ secondaryButtonOnDarkBackgroundStyle =
         , backgroundColor colorSecondary
         , color colorPrimary
         , borderColor colorSecondary
-        , withMediaCanHover [ hover [ backgroundColor colorSecondaryLight, borderColor colorSecondaryLight ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorAccent ] ]
         , active [ backgroundColor colorWhite, borderColor colorWhite ]
         , focus [ backgroundColor colorWhite, borderColor colorWhite ]
         ]
@@ -119,7 +119,7 @@ secondaryButtonOnLightBackgroundStyle =
         , backgroundColor colorSecondary
         , color colorPrimary
         , borderColor colorSecondary
-        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorWhite, color colorWhite ] ]
+        , withMediaCanHover [ hover [ backgroundColor colorAccent, borderColor colorAccent, color colorPrimary ] ]
         , active [ backgroundColor colorPrimary, borderColor colorWhite, color colorWhite ]
         , focus [ backgroundColor colorPrimary, borderColor colorWhite, color colorWhite ]
         ]
@@ -147,7 +147,8 @@ primaryBackgroundStyle =
 smallTitleStyle : Style
 smallTitleStyle =
     batch
-        [ textTransform uppercase
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , textTransform uppercase
         , textAlign center
         , letterSpacing (px 1.9)
         , fontWeight (int 700)
@@ -246,9 +247,9 @@ introTextLargeStyle : Style
 introTextLargeStyle =
     batch
         [ textAlign center
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.6)
         , lineHeight (rem 2)
-        , fontStyle italic
         , fontWeight (int 500)
         , margin2 (rem 1) (rem 0.5)
         , Theme.GlobalLayout.withMediaTabletLandscapeUp
@@ -262,6 +263,8 @@ introTextSmallStyle : Style
 introTextSmallStyle =
     batch
         [ textAlign center
+        , fontStyle italic
+        , fontWeight (int 500)
         , margin2 (rem 1.5) (rem 0)
         , Theme.GlobalLayout.withMediaTabletLandscapeUp
             [ fontSize (rem 1.2), margin2 (rem 1.5) (rem 6.5) ]
@@ -290,7 +293,9 @@ linkStyle =
 normalFirstParagraphStyle : Style
 normalFirstParagraphStyle =
     batch
-        [ descendants
+        [ fontWeight (int 500)
+        , fontStyle italic
+        , descendants
             [ typeSelector "p"
                 [ batch
                     [ firstChild
@@ -418,13 +423,10 @@ globalStyles =
         [ typeSelector "body"
             [ backgroundColor colorPrimary
             , color colorWhite
-            , fontFamilies [ "covik-sans", sansSerif.value ]
+            , fontFamilies [ "Satoshi", sansSerif.value ]
             , fontWeight (int 400)
-            , backgroundImage (url "/images/backgrounds/background-small-800.png")
             , backgroundRepeat repeat
             , backgroundSize (px 800)
-            , Theme.GlobalLayout.withMediaMediumDesktopUp [ backgroundImage (url "/images/backgrounds/background-largest-1920.png"), backgroundSize (px 1920) ]
-            , Theme.GlobalLayout.withMediaTabletLandscapeUp [ backgroundImage (url "/images/backgrounds/background-medium-1080.png"), backgroundSize (px 1080) ]
             ]
         , typeSelector "h1"
             [ color colorPrimary

@@ -2,7 +2,7 @@ module Theme.PageFooter exposing (viewPageFooter)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, active, after, alignItems, alignSelf, auto, backgroundColor, backgroundImage, backgroundSize, batch, block, borderBox, boxSizing, center, color, column, display, displayFlex, flexDirection, flexEnd, flexShrink, flexWrap, focus, fontSize, fontWeight, height, hover, inherit, int, justifyContent, lineHeight, margin, margin2, margin4, marginBottom, marginRight, marginTop, maxWidth, none, nthLastChild, padding, padding2, padding4, pct, property, pseudoElement, px, rem, row, spaceBetween, stretch, textAlign, textDecoration, url, width, wrap)
+import Css exposing (Style, active, after, alignItems, alignSelf, auto, backgroundColor, backgroundImage, backgroundSize, batch, block, borderBox, boxSizing, center, color, column, display, displayFlex, flexDirection, flexEnd, flexShrink, flexWrap, focus, fontFamilies, fontSize, fontStyle, fontWeight, height, hover, inherit, int, italic, justifyContent, lineHeight, margin, margin2, margin4, marginBottom, marginRight, marginTop, maxWidth, none, nthLastChild, padding, padding2, padding4, pct, property, pseudoElement, px, rem, row, serif, spaceBetween, stretch, textAlign, textDecoration, url, width, wrap)
 import Css.Transitions exposing (transition)
 import Helpers.TransDate exposing (humanYearFromPosix)
 import Helpers.TransRoutes as TransRoutes exposing (Route(..))
@@ -10,7 +10,7 @@ import Html.Styled exposing (Html, a, button, div, footer, form, img, input, lab
 import Html.Styled.Attributes exposing (action, alt, attribute, css, for, href, id, method, name, placeholder, src, target, type_, value)
 import List exposing (append, concat)
 import Skin.Global exposing (colorAccentDark, colorPrimary, colorSecondary, colorWhite, secondaryButtonOnDarkBackgroundStyle, smallInlineTitleStyle, textInputStyle)
-import Theme.GlobalLayout exposing (colorTransition, withMediaCanHover, withMediaMediumDesktopUp, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
+import Theme.GlobalLayout exposing (colorTransition, withMediaCanHover, withMediaMediumDesktopUp, withMediaMobileOnly, withMediaSmallDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
 import Theme.Logo
 import Time
 
@@ -23,27 +23,12 @@ viewPageFooter time =
             , viewPageFooterNavigation
             ]
         , div [ css [ footerMiddleSectionStyle ] ]
-            [ viewPageFooterSocial
-            , viewPageFooterSignup
-            , viewPageFooterLogos
+            [ viewPageFooterLogos
+            , viewPageFooterSocial
             ]
         , div [ css [ footerBottomSectionStyle ] ]
-            [ viewPageFooterInfo (t FooterInfoTitle) [ t FooterInfoCharity, t FooterInfoCompany, t FooterInfoOffice ]
-            , viewPageFooterCredit time
+            [ viewPageFooterCredit time
                 (t FooterCreditTitle)
-                [ { name = t FooterCredit1Name
-                  , link = t FooterCredit1Link
-                  , text = t FooterCredit1Text
-                  }
-                , { name = t FooterCredit2Name
-                  , link = t FooterCredit2Link
-                  , text = t FooterCredit2Text
-                  }
-                , { name = t FooterCredit3Name
-                  , link = t FooterCredit3Link
-                  , text = t FooterCredit3Text
-                  }
-                ]
             ]
         ]
 
@@ -52,9 +37,15 @@ viewPageFooterLogo : Html msg
 viewPageFooterLogo =
     div [ css [ footerLogoStyle ] ]
         [ img
-            [ src "/images/logos/site_logo_footer.svg"
+            [ src "/images/logos/fsec_logo_long_blue.svg"
             , alt (t SiteTitle)
             , css [ footerLogoImageStyle ]
+            ]
+            []
+        , img
+            [ src "/images/logos/fsec_logo_text_blue.svg"
+            , alt (t SiteTitle)
+            , css [ footerLogoMobileImageStyle ]
             ]
             []
         ]
@@ -65,7 +56,7 @@ viewPageFooterNavigation =
     nav [ css [ navStyle ] ]
         [ ul [ css [ navListStyle ] ]
             (List.map viewPageFooterNavigationItem
-                [ Events, Partners, News, About, Privacy, JoinUs ]
+                [ Events, Partners, About, Privacy, JoinUs ]
             )
         ]
 
@@ -84,8 +75,6 @@ viewPageFooterLogos =
         , ul [ css [ logoListStyle ] ]
             [ li [ css [ logoListItemStyle ] ]
                 [ a [ href (t GeeksForSocialChangeHomeUrl), target "_blank", css [ Theme.Logo.logoParentStyle ] ] [ Theme.Logo.viewGFSC ] ]
-            , li [ css [ logoListItemStyle ] ]
-                [ a [ href (t PartnerOrganisationHomeUrl), target "_blank", css [ partnershipLogoStyle ], attribute "aria-label" (t PartnerOrganisationLogoTxt) ] [] ]
             ]
         ]
 
@@ -145,20 +134,18 @@ viewPageFooterSocial =
         , ul
             [ css [ socialListStyle ] ]
             [ li [ css [ socialListItemStyle ] ] [ a [ href (t FooterInstaLink), target "_blank", css [ Theme.Logo.logoParentStyle ] ] [ Theme.Logo.viewInsta ] ]
-            , li [ css [ socialListItemStyle ] ] [ a [ href (t FooterTwitterLink), target "_blank", css [ Theme.Logo.logoParentStyle ] ] [ Theme.Logo.viewTwitter ] ]
-            , li [ css [ socialListItemStyle ] ] [ a [ href (t FooterFacebookLink), target "_blank", css [ Theme.Logo.logoParentStyle ] ] [ Theme.Logo.viewFacebook ] ]
             ]
         ]
 
 
-viewPageFooterCredit : Time.Posix -> String -> List { name : String, link : String, text : String } -> Html msg
-viewPageFooterCredit time creditTitle creditList =
+viewPageFooterCredit : Time.Posix -> String -> Html msg
+viewPageFooterCredit time creditTitle =
     div [ css [ secondaryBlockStyle ] ]
-        [ p [ css [ infoParagraphStyle, fontWeight (int 700), marginTop (rem 0) ] ]
+        [ p [ css [ creditTitleStyle, marginTop (rem 0) ] ]
             [ text creditTitle ]
         , p
             [ css [ infoParagraphStyle ] ]
-            (concat [ List.intersperse (text ", ") (List.map viewPageFooterCreditItem creditList), [ span [] [ text "." ] ] ])
+            [ viewPageFooterCreditText ]
         , p [ css [ infoParagraphStyle ] ] [ text (t (FooterCopyright (humanYearFromPosix time))) ]
         , a [ href "https://placecal.org" ]
             [ img
@@ -180,6 +167,18 @@ viewPageFooterCreditItem creditItem =
         ]
 
 
+viewPageFooterCreditText : Html msg
+viewPageFooterCreditText =
+    span []
+        [ text (t FooterCreditText)
+        , text " "
+        , a [ href (t FooterCredit3Link), target "_blank", css [ creditLinkStyle ] ] [ text (t FooterCredit3Name) ]
+        , text " & "
+        , text (t SiteTitle)
+        , text "."
+        ]
+
+
 footerStyle : Style
 footerStyle =
     batch
@@ -197,7 +196,7 @@ footerTopSectionStyle =
         , withMediaTabletPortraitUp
             [ displayFlex
             , alignItems stretch
-            , padding4 (rem 1) (rem 1) (rem 2) (rem 1)
+            , padding4 (rem 1) (rem 1) (rem 1) (rem 1)
             , boxSizing borderBox
             , justifyContent spaceBetween
             , alignItems center
@@ -216,7 +215,7 @@ footerMiddleSectionStyle =
         , property "grid-template-rows" "auto"
         , withMediaMediumDesktopUp [ padding2 (rem 1) (rem 12) ]
         , withMediaSmallDesktopUp
-            [ property "grid-template-columns" "4fr 6fr 4fr"
+            [ property "grid-template-columns" "4fr 4fr"
             , property "grid-template-rows" "1fr"
             , padding2 (rem 1) (rem 2)
             ]
@@ -225,8 +224,12 @@ footerMiddleSectionStyle =
             ]
         , withMediaTabletPortraitUp
             [ property "grid-template-columns" "1fr 1fr"
-            , property "grid-template-rows" "1fr 1fr"
+            , property "grid-template-rows" "1fr"
             , padding (rem 1)
+            ]
+        , withMediaMobileOnly
+            [ property "grid-template-columns" "1fr"
+            , property "grid-template-rows" "1fr 1fr"
             ]
         ]
 
@@ -243,6 +246,7 @@ footerLogoStyle =
         [ padding (rem 1)
         , backgroundColor colorSecondary
         , textAlign center
+        , withMediaMobileOnly [ padding4 (rem 1) (rem 1) (rem 0) (rem 1) ]
         ]
 
 
@@ -250,10 +254,24 @@ footerLogoImageStyle : Style
 footerLogoImageStyle =
     batch
         [ width (pct 100)
-        , maxWidth (px 225)
         , display block
         , margin2 (rem 1) auto
         , withMediaTabletPortraitUp [ margin (rem 0) ]
+        , withMediaMobileOnly [ display none ]
+        ]
+
+
+footerLogoMobileImageStyle : Style
+footerLogoMobileImageStyle =
+    batch
+        [ width (pct 40)
+        , display block
+        , margin2 (rem 1) auto
+        , withMediaTabletPortraitUp [ margin (rem 0) ]
+        , withMediaSmallDesktopUp [ display none ]
+        , withMediaMediumDesktopUp [ display none ]
+        , withMediaTabletLandscapeUp [ display none ]
+        , withMediaTabletPortraitUp [ display none ]
         ]
 
 
@@ -264,12 +282,12 @@ createdByStyle =
         , padding (rem 1)
         , boxSizing borderBox
         , withMediaSmallDesktopUp
-            [ property "grid-column" "2 / 3"
+            [ property "grid-column" "1 / 2"
             , property "grid-row" "1 / 2"
             ]
         , withMediaTabletPortraitUp
-            [ property "grid-column" "1 / 3"
-            , property "grid-row" "2 / 3"
+            [ property "grid-column" "1 / 2"
+            , property "grid-row" "1 / 2"
             ]
         ]
 
@@ -309,7 +327,7 @@ navStyle : Style
 navStyle =
     batch
         [ backgroundColor colorSecondary
-        , padding4 (rem 1) (rem 1) (rem 3) (rem 1)
+        , padding4 (rem 1) (rem 1) (rem 1) (rem 1)
         , marginBottom (rem 1)
         , withMediaTabletPortraitUp [ marginBottom (rem 0), padding (rem 1), maxWidth (pct 55) ]
         ]
@@ -325,6 +343,7 @@ navListItemStyle : Style
 navListItemStyle =
     batch
         [ textAlign center
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontWeight (int 600)
         , margin (rem 0.5)
         , fontSize (rem 1.1)
@@ -435,6 +454,7 @@ formInputStyle =
         , margin2 (rem 1) auto
         , textAlign center
         , width (pct 100)
+        , fontFamilies [ "cooper-black-std", .value serif ]
         , fontSize (rem 1.2)
         , pseudoElement "placeholder" [ color colorWhite ]
         , withMediaTabletPortraitUp [ margin4 (rem 0) (rem 1) (rem 0) (rem 0) ]
@@ -455,10 +475,23 @@ signupButtonStyle =
         ]
 
 
+creditTitleStyle : Style
+creditTitleStyle =
+    batch
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , textAlign center
+        , fontSize (rem 0.8777)
+        , margin2 (rem 1) (rem 2)
+        , lineHeight (rem 1.13)
+        ]
+
+
 infoParagraphStyle : Style
 infoParagraphStyle =
     batch
         [ textAlign center
+        , fontStyle italic
+        , fontWeight (int 500)
         , fontSize (rem 0.8777)
         , margin2 (rem 1) (rem 2)
         , lineHeight (rem 1.13)
@@ -479,4 +512,6 @@ creditLinkStyle =
 poweredByPlaceCalStyle : Style
 poweredByPlaceCalStyle =
     batch
-        [ margin4 (rem 3) auto (rem 1) auto ]
+        [ margin4 (rem 3) auto (rem 1) auto
+        , width (px 180)
+        ]

@@ -2,7 +2,7 @@ module Theme.PageHeader exposing (viewPageHeader)
 
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
-import Css exposing (Style, alignItems, alignSelf, auto, backgroundColor, batch, block, border, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, borderRadius, boxSizing, center, color, column, columnReverse, cursor, display, displayFlex, flexDirection, flexGrow, flexWrap, fontSize, fontWeight, hover, int, justifyContent, lighter, margin, margin2, marginLeft, marginRight, none, padding, padding2, padding4, paddingBottom, paddingLeft, pointer, rem, row, solid, spaceBetween, textAlign, textDecoration, transparent, unset, wrap, zero)
+import Css exposing (Style, alignItems, alignSelf, auto, backgroundColor, batch, block, border, borderBottomColor, borderBottomStyle, borderBottomWidth, borderBox, boxSizing, center, color, column, columnReverse, cursor, display, displayFlex, flexDirection, flexGrow, flexWrap, fontFamilies, fontSize, fontStyle, fontWeight, hover, int, italic, justifyContent, margin, margin2, marginLeft, marginRight, none, padding, padding2, paddingBottom, paddingLeft, pointer, rem, row, serif, solid, spaceBetween, textAlign, textDecoration, transparent, unset, wrap, zero)
 import Css.Transitions exposing (transition)
 import Helpers.TransRoutes as TransRoutes exposing (..)
 import Html.Styled exposing (Html, a, button, div, h1, header, li, nav, span, text, ul)
@@ -10,15 +10,14 @@ import Html.Styled.Attributes exposing (attribute, css, href)
 import Html.Styled.Events exposing (onClick)
 import Messages exposing (Msg(..))
 import Route exposing (Route)
-import Skin.Global exposing (colorPrimary, colorSecondary, colorWhite)
+import Skin.Global exposing (colorPrimary, colorSecondary, colorWhite, whiteButtonStyle)
 import Theme.GlobalLayout exposing (screenReaderOnly, withMediaCanHover, withMediaTabletPortraitUp)
-import Theme.Logo
 import UrlPath exposing (UrlPath)
 
 
 headerNavigationItems : List TransRoutes.Route
 headerNavigationItems =
-    [ Home, Events, Partners, News, About, Donate ]
+    [ Home, Events, Partners, About ]
 
 
 viewPageHeader :
@@ -41,8 +40,8 @@ viewPageHeaderTitle : Html Msg
 viewPageHeaderTitle =
     div [ css [ titleStyle ] ]
         [ h1 []
-            [ span [ css [ screenReaderOnly ] ] [ text (t SiteTitle ++ ", " ++ t SiteStrapline) ]
-            , span [ attribute "aria-hidden" "true" ] [ Theme.Logo.view ]
+            [ span [ css [ screenReaderOnly ] ] [ text (t SiteTitle) ]
+            , span [ css [ acronymStyle ], attribute "aria-hidden" "true" ] [ text (t SiteAcronym) ]
             ]
         ]
 
@@ -116,8 +115,7 @@ viewPageHeaderAsk copyText linkTo =
         [ a
             [ href linkTo
             , css
-                [ navigationLinkStyle
-                , askButtonStyle
+                [ whiteButtonStyle
                 ]
             ]
             [ text copyText ]
@@ -153,6 +151,7 @@ titleBarStyle =
     batch
         [ displayFlex
         , justifyContent spaceBetween
+        , alignItems center
         , withMediaTabletPortraitUp [ display none ]
         ]
 
@@ -167,7 +166,9 @@ titleStyle =
 barStyle : Style
 barStyle =
     batch
-        [ withMediaTabletPortraitUp
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , fontWeight (int 400)
+        , withMediaTabletPortraitUp
             [ backgroundColor colorSecondary
             , alignItems center
             ]
@@ -199,6 +200,7 @@ buttonTextStyle : Style
 buttonTextStyle =
     batch
         [ color colorWhite
+        , fontStyle italic
         , marginRight (rem 0.5)
         ]
 
@@ -208,7 +210,7 @@ buttonCrossStyle =
     batch
         [ color colorSecondary
         , fontSize (rem 4)
-        , fontWeight lighter
+        , fontStyle italic
         , display block
         , margin2 (rem -1.75) (rem 0)
         ]
@@ -304,15 +306,10 @@ askStyle =
         ]
 
 
-askButtonStyle : Style
-askButtonStyle =
+acronymStyle : Style
+acronymStyle =
     batch
-        [ backgroundColor colorWhite
-        , borderBottomStyle none
-        , padding (rem 1)
-        , withMediaCanHover [ hover [ color colorSecondary ] ]
-        , withMediaTabletPortraitUp
-            [ padding4 (rem 0.375) (rem 1.25) (rem 0.5) (rem 1.25)
-            , borderRadius (rem 0.3)
-            ]
+        [ fontFamilies [ "cooper-black-std", .value serif ]
+        , color colorSecondary
+        , margin2 (rem 2) (rem 1)
         ]
