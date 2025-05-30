@@ -3,15 +3,14 @@ module Theme.Page.Event exposing (viewButtons, viewEventInfo)
 import Copy.Keys exposing (Key(..))
 import Copy.Text exposing (t)
 import Copy.Utils exposing (isValidUrl, urlToDisplay)
-import Css exposing (Style, auto, batch, calc, center, color, displayFlex, em, fontFamilies, fontSize, fontStyle, fontWeight, int, italic, justifyContent, letterSpacing, margin2, margin4, marginBlockEnd, marginBlockStart, marginBottom, marginTop, maxWidth, minus, normal, pct, px, rem, serif, textAlign, textTransform, uppercase, width)
+import Css exposing (Style, auto, batch, calc, center, color, displayFlex, em, fontFamilies, fontSize, fontStyle, fontWeight, int, italic, justifyContent, letterSpacing, margin2, margin4, marginBlockEnd, marginBlockStart, marginBottom, marginTop, maxWidth, minus, pct, px, rem, serif, textAlign, textTransform, uppercase, width)
 import Data.PlaceCal.Events
 import Helpers.TransDate
 import Helpers.TransRoutes
 import Html.Styled exposing (Html, a, div, h4, hr, p, section, text, time)
 import Html.Styled.Attributes exposing (css, href, target)
-import Skin.Global exposing (colorSecondary, hrStyle, linkStyle, mapImage, normalFirstParagraphStyle, smallInlineTitleStyle, viewBackButton)
+import Skin.Global exposing (colorSecondary, hrStyle, linkStyle, mapImage, normalFirstParagraphStyle, secondaryButtonOnDarkBackgroundStyle, smallInlineTitleStyle, viewBackButton)
 import Theme.GlobalLayout exposing (withMediaMediumDesktopUp, withMediaTabletLandscapeUp, withMediaTabletPortraitUp)
-import Theme.TransMarkdown
 
 
 viewEventInfo : Data.PlaceCal.Events.Event -> Html msg
@@ -34,7 +33,6 @@ viewEventInfo event =
 
             Nothing ->
                 div [ css [ mapContainerStyle ] ] [ text "" ]
-        , publisherUrlSection event
         ]
 
 
@@ -57,8 +55,11 @@ viewInfoSection event =
                 Nothing ->
                     text ""
             ]
-        , div [ css [ eventDescriptionStyle ] ]
-            (Theme.TransMarkdown.markdownToHtml event.description)
+        , publisherUrlSection event
+
+        -- Hiding until the description formatting is fixed
+        -- , div [ css [ eventDescriptionStyle ] ]
+        --     (Theme.TransMarkdown.markdownToHtml event.description)
         ]
 
 
@@ -141,9 +142,13 @@ publisherUrlSection event =
     case event.maybePublisherUrl of
         Just publisherUrl ->
             if isValidUrl publisherUrl then
-                div [ css [ publisherSectionStyle ] ]
-                    [ hr [ css [ hrStyle, marginTop (rem 2.5) ] ] []
-                    , a [ href publisherUrl, css [ linkStyle ] ] [ text (t (EventVisitPublisherUrlText event.partner.name)) ]
+                p [ css [ publisherSectionStyle ] ]
+                    [ a
+                        [ href publisherUrl
+                        , target "_blank"
+                        , css [ secondaryButtonOnDarkBackgroundStyle ]
+                        ]
+                        [ text (t EventVisitPublisherUrlText) ]
                     ]
 
             else
@@ -276,5 +281,5 @@ publisherSectionStyle : Style
 publisherSectionStyle =
     batch
         [ textAlign center
-        , marginBottom (rem 2)
+        , margin2 (rem 2) (rem 2)
         ]

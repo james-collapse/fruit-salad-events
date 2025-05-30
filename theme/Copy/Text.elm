@@ -200,8 +200,8 @@ t key =
         BackToEventsLinkText ->
             "All events"
 
-        EventVisitPublisherUrlText maybePartnerName ->
-            "Visit " ++ Maybe.withDefault "Publisher" maybePartnerName ++ "'s site"
+        EventVisitPublisherUrlText ->
+            "View event"
 
         --- Partners Page
         PartnersTitle ->

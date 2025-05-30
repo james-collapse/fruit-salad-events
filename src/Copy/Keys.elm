@@ -81,7 +81,7 @@ type Key
     | EventMetaDescription String
     | BackToPartnerEventsLinkText (Maybe String)
     | BackToEventsLinkText
-    | EventVisitPublisherUrlText (Maybe String)
+    | EventVisitPublisherUrlText
       --- Partners Page
     | PartnersTitle
     | PartnersMetaDescription
