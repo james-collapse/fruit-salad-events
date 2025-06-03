@@ -1,32 +1,11 @@
-# PlaceCal template
+# Fruit Salad Events
 
 ## A [PlaceCal](https://placecal.org/) community site
 
-Front-end for a PlaceCal instance, an online community hub.
+Front-end for the [Fruit Salad Events PlaceCal](https://fruitsaladevents.placecal.org/), an online community calendar for LGBTQIA+ events that prioritise accessibility, conversation and conversation.
 
 -  Staging url: 
--  Production URL:
-
-### To use this template
-
-#### Adding your copy and styles
-
-- [ ] Copy `.env.example` to `.env` and change `CANONICAL_URL`, `JOIN_US_FUNCTION_URL` and `PARTNERSHIP_TAG_LIST`
-- [ ] Edit `elm-pages.config.mjs` to add scripts fonts or stylesheets to you the html `<head>` of your site's template
-- [ ] Edit the markdown in `theme/content` to generate your About and Privacy information
-- [ ] Edit `theme/Copy/Text` to generate your UI & SEO text
-- [ ] Edit the reset and core css styles like fonts in `public/css`
-- [ ] Add your brand colors to `theme/Global/Skin` following guidence there
-
-#### Adding your images and logos
-Add your images, like logos and background to `public/images`
-
-- [ ] `backgrounds` should be tiling. They are sized at 800px (small screens), 1080px (medium screens), 1920px (largest screens)
-- [ ] `characters` should be `.png` are used on the frame of some text boxes. They can be objects, symbols or people - anything that helps illustrate the character of your community. There is one `primary` and 4 used only on the `about` page.
-- [ ] `icons` are the right and left arrows used for pagination of events
-- [ ] `illustrations` are a selection of `.png`s used a bit like stickers to populate the background at various screen sizes. Like characters, these should communicate your community vibe.
-- [ ] `logos` Please do not replace `_gfsc` and `_placecal` logos used in the footer and about page to help people find out who we are. You can replace the social icons (`_facebook`, `_instagram`, `_twitter`). `partnership_` and `site_` logos are yours. They all need to exist by name, but can be the same image copied if the aspect ratio & colour works well in situ.
-- [ ] `news` article images are used as placeholders for your partners' articles if they supply any in PlaceCal (TODO these may not be in use currently)
+-  Production URL: https://fruitsaladevents.co.uk
 
 # Development
 
@@ -110,7 +89,6 @@ Deploys to Cloudflare Pages
 ### Adding issues
 
 -  add effort & value labels (if you know enough about it)
--  put the issue in a milestone (if it is part of a current epic)
 
 ### Working on issue
 
@@ -130,16 +108,8 @@ Deploys to Cloudflare Pages
 
 Source code is released under the [Hippocratic License](https://firstdonoharm.dev/version/3/0/license/).
 
-Graphic design by [Studio Squid](https://studiosquid.co.uk/) and © Gendered Intelligence 2022.
-
-Illustrations © [Harry Woodgate](https://www.harrywoodgate.com/) 2022.
+Design by by [Geeks for Social Change](https://gfsc.studio/).
 
 ## Contributing
 
-We welcome new contributors but strongly recommend you have a chat with us in [Geeks for Social Change's Discord server](http://discord.gfsc.studio) and say hi before you do. We will be happy to onboard you properly before you get stuck in.
-
-## Donations
-
-If you'd like to support development, please consider sending us a one-off or regular donation on Ko-fi.
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M43THUM)
+We welcome new contributors, but please drop us a message before you start - we will be happy to onboard you properly before you get stuck in.
