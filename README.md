@@ -19,7 +19,7 @@ Front-end for the [Fruit Salad Events PlaceCal](https://fruitsaladevents.placeca
 - make sure you are using the correct node version with `nvm use`
 - install with `npm install`
 
-Copy `.env.example` over into `.env` and edit as appropriate! This must be done before any of the following will work as it generates `src/Constants.elm` which is used in a number of places in the code.
+Copy `.env.example` over into `.env` and edit if necessary. This must be done before any of the following will work as it generates `src/Constants.elm` which is used in a number of places in the code.
 
 Edit `elm-pages.config.mjs` to include the meta information for your site.
 
