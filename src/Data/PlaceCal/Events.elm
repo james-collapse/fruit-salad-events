@@ -210,7 +210,7 @@ allEventsQuery partnershipTag =
                 ("query { eventsByFilter(tagId: "
                     ++ partnershipTag
                     ++ """
-            , fromDate: "2024-06-01 00:00", toDate: "2026-01-01 00:00") {
+            , fromDate: "2025-04-01 00:00", toDate: "2026-04-01 00:00") {
               id
               name
               summary
