@@ -205,12 +205,13 @@ allEventsQuery : String -> Json.Encode.Value
 allEventsQuery partnershipTag =
     Json.Encode.object
         [ ( "query"
-            -- Note hardcoded to load events from 2022-09-01
+            -- Note: these dates are hardcoded, but should be made variable
+            -- https://github.com/geeksforsocialchange/the-trans-dimension/issues/523
           , Json.Encode.string
                 ("query { eventsByFilter(tagId: "
                     ++ partnershipTag
                     ++ """
-            , fromDate: "2025-04-01 00:00", toDate: "2026-04-01 00:00") {
+            , fromDate: "2025-09-01 00:00", toDate: "2026-04-01 00:00") {
               id
               name
               summary
