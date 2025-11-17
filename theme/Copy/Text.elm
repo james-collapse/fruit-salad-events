@@ -227,7 +227,7 @@ t key =
 
         --- Partner Page
         PartnerTitle partnerName ->
-            "PlaceCal Partner - " ++ partnerName
+            partnerName
 
         PartnerContactsHeading ->
             "Get in touch"
