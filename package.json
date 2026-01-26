@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "elm-tooling install",
     "start": "elm-constants && elm-pages dev --port 3030",
-    "build": "elm-constants && elm-pages build",
+    "build": "FROM_DATE=\"$(date -u -d '-1 month' '+%Y-%m-%d 00:00')\" TO_DATE=\"$(date -u -d '+6 months' '+%Y-%m-%d 00:00')\" elm-constants && elm-pages build",
     "format": "elm-format src tests",
     "review": "elm-review src app",
     "review-fix": "elm-review --fix src app",

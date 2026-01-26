@@ -2,6 +2,7 @@ module Data.PlaceCal.Events exposing (Event, EventLocation, EventPartner, EventP
 
 import BackendTask
 import BackendTask.Custom
+import Constants
 import Data.PlaceCal.Api
 import Data.PlaceCal.Partners
 import FatalError
@@ -205,13 +206,14 @@ allEventsQuery : String -> Json.Encode.Value
 allEventsQuery partnershipTag =
     Json.Encode.object
         [ ( "query"
-            -- Note: these dates are hardcoded, but should be made variable
-            -- https://github.com/geeksforsocialchange/the-trans-dimension/issues/523
           , Json.Encode.string
                 ("query { eventsByFilter(tagId: "
                     ++ partnershipTag
-                    ++ """
-            , fromDate: "2025-09-01 00:00", toDate: "2026-04-01 00:00") {
+                    ++ ", fromDate: \""
+                    ++ Constants.fromDate
+                    ++ "\", toDate: \""
+                    ++ Constants.toDate
+                    ++ """") {
               id
               name
               summary
