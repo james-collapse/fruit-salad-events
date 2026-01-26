@@ -1,10 +1,12 @@
 {
-    "path": "./src",
-    "moduleName": "Constants",
-    "values": [
-        "CANONICAL_URL",
-        "PLACECAL_API",
-        "JOIN_US_FUNCTION_URL",
-        "PARTNERSHIP_TAG_LIST"
-    ]
-  }
+  "path": "./src",
+  "moduleName": "Constants",
+  "values": [
+    "CANONICAL_URL",
+    "PLACECAL_API",
+    "JOIN_US_FUNCTION_URL",
+    "PARTNERSHIP_TAG_LIST",
+    "FROM_DATE",
+    "TO_DATE"
+  ]
+}
