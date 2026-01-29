@@ -182,7 +182,7 @@ update msg model =
             ( { model | filterParam = maybeRegionId }, Effect.none )
 
         GetTimeZone zone ->
-            ( { model | timezone = Time.utc }, Effect.none )
+            ( { model | timezone = zone }, Effect.none )
 
 
 updateRegionFilter : Maybe Int -> ( Model, Effect Msg ) -> ( Model, Effect Msg )

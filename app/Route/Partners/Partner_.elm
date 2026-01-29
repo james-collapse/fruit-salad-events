@@ -179,7 +179,7 @@ update app _ msg model =
             ( { model | filterByDate = Theme.Paginator.Day nextEventTime }, Effect.none )
 
         Theme.Page.Events.GetTimeZone zone ->
-            ( { model | timezone = Time.utc }, Effect.none )
+            ( { model | timezone = zone }, Effect.none )
 
 
 subscriptions : RouteParams -> UrlPath.UrlPath -> Shared.Model -> Model -> Sub Msg
