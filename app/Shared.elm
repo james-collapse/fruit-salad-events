@@ -142,6 +142,9 @@ update msg model =
                 Just (Route.Partners__Partner_ _) ->
                     baseUpdate
 
+                Just Route.Blog ->
+                    baseUpdate
+
                 Just Route.About ->
                     baseUpdate
 

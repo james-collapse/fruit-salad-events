@@ -12,8 +12,8 @@ type Route
     | Event String
     | Events
     | JoinUs
-    | NewsItem String
-    | News
+    | BlogItem String
+    | Blog
     | Donate
     | Partner String
     | Partners
@@ -39,11 +39,11 @@ toPageTitle route =
         JoinUs ->
             t JoinUsTitle
 
-        NewsItem title ->
-            t (NewsItemTitle Prefixed title)
+        BlogItem title ->
+            t (BlogItemTitle Prefixed title)
 
-        News ->
-            t NewsTitle
+        Blog ->
+            t BlogTitle
 
         Donate ->
             t HeaderAskButton
@@ -79,11 +79,11 @@ toPath route =
         JoinUs ->
             UrlPath.fromString "join-us"
 
-        NewsItem slug ->
-            UrlPath.join [ "news", slug ]
+        BlogItem slug ->
+            UrlPath.join [ "blog", slug ]
 
-        News ->
-            UrlPath.fromString "news"
+        Blog ->
+            UrlPath.fromString "blog"
 
         Donate ->
             UrlPath.fromString "donate"

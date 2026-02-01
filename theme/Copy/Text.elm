@@ -305,33 +305,33 @@ t key =
         JoinUsFormSubmitButton ->
             "Submit"
 
-        --- News Listing Page
-        NewsTitle ->
-            "News"
+        --- Blog Listing Page
+        BlogTitle ->
+            "Blog"
 
-        NewsEmptyText ->
-            "There is no recent news"
+        BlogEmptyText ->
+            "There are no recent posts"
 
-        NewsItemReadMore ->
+        BlogItemReadMore ->
             "Read the rest"
 
-        NewsDescription ->
+        BlogDescription ->
             "Updates & articles from our partners."
 
-        --- News Single Article Page
-        NewsItemTitle prefix title ->
+        --- Blog Single Article Page
+        BlogItemTitle prefix title ->
             case prefix of
                 Prefixed ->
-                    "News - " ++ title
+                    "Blog - " ++ title
 
                 NoPrefix ->
                     title
 
-        NewsItemMetaDescription title author ->
+        BlogItemMetaDescription title author ->
             title ++ " - by " ++ author
 
-        NewsItemReturnButton ->
-            "Go back to news"
+        BlogItemReturnButton ->
+            "Go back to blog posts"
 
         --- Privacy Page (note this also comes from markdown)
         PrivacyTitle ->

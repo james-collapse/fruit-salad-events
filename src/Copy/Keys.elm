@@ -119,15 +119,15 @@ type Key
     | JoinUsFormInputMessageLabel
     | JoinUsFormInputMessagePlaceholder
     | JoinUsFormSubmitButton
-      --- News Listing Page
-    | NewsTitle
-    | NewsEmptyText
-    | NewsDescription
-      --- News Single Article Page
-    | NewsItemTitle Prefix String
-    | NewsItemMetaDescription String String
-    | NewsItemReturnButton
-    | NewsItemReadMore
+      --- Blog Page
+    | BlogTitle
+    | BlogEmptyText
+    | BlogDescription
+      --- Blog Single Article Page
+    | BlogItemTitle Prefix String
+    | BlogItemMetaDescription String String
+    | BlogItemReturnButton
+    | BlogItemReadMore
       --- Privacy
     | PrivacyTitle
     | PrivacyMetaDescription
