@@ -42,24 +42,48 @@ emptyArticle =
 
 articlesData : BackendTask.BackendTask { fatal : FatalError.FatalError, recoverable : BackendTask.Custom.Error } AllArticlesResponse
 articlesData =
-    Data.PlaceCal.Api.fetchAndCachePlaceCalData "articles"
-        allArticlesQuery
-        articlesDecoder
+    BackendTask.combine
+        (List.map
+            (\partnershipTagInt ->
+                Data.PlaceCal.Api.fetchAndCachePlaceCalData
+                    "articles"
+                    (allArticlesQuery (String.fromInt partnershipTagInt))
+                    articlesDecoder
+            )
+            Data.PlaceCal.Partners.partnershipTagIdList
+        )
+        |> BackendTask.map (List.map .allArticles)
+        |> BackendTask.map List.concat
+        |> BackendTask.map sortArticlesByDate
+        |> BackendTask.map (\articles -> { allArticles = articles })
 
 
-allArticlesQuery : Json.Encode.Value
-allArticlesQuery =
+sortArticlesByDate : List Article -> List Article
+sortArticlesByDate articles =
+    List.sortBy
+        (\article -> Time.posixToMillis article.publishedDatetime)
+        articles
+
+
+allArticlesQuery : String -> Json.Encode.Value
+allArticlesQuery partnershipTag =
     Json.Encode.object
         [ ( "query"
-          , Json.Encode.string """
-            query { articleConnection { edges {
-                node {
-                  articleBody
-                  datePublished
-                  headline
-                  providers { id }
-                  image
-            } } } }
+          , Json.Encode.string <|
+                """
+            query {
+                articlesByTag(tagId: """
+                    ++ partnershipTag
+                    ++ """) {
+                headline
+                articleBody
+                datePublished
+                providers {
+                    id
+                }
+                image
+                }
+            }
             """
           )
         ]
@@ -68,21 +92,21 @@ allArticlesQuery =
 articlesDecoder : Json.Decode.Decoder AllArticlesResponse
 articlesDecoder =
     Json.Decode.succeed AllArticlesResponse
-        |> Json.Decode.Pipeline.requiredAt [ "data", "articleConnection", "edges" ] (Json.Decode.list decode)
+        |> Json.Decode.Pipeline.requiredAt [ "data", "articlesByTag" ] (Json.Decode.list decode)
 
 
 decode : Json.Decode.Decoder Article
 decode =
     (Json.Decode.succeed Article
-        |> Json.Decode.Pipeline.requiredAt [ "node", "headline" ]
+        |> Json.Decode.Pipeline.required "headline"
             Json.Decode.string
-        |> Json.Decode.Pipeline.requiredAt [ "node", "articleBody" ]
+        |> Json.Decode.Pipeline.required "articleBody"
             Json.Decode.string
-        |> Json.Decode.Pipeline.requiredAt [ "node", "datePublished" ]
+        |> Json.Decode.Pipeline.required "datePublished"
             Helpers.TransDate.isoDateStringDecoder
-        |> Json.Decode.Pipeline.requiredAt [ "node", "providers" ]
+        |> Json.Decode.Pipeline.required "providers"
             (Json.Decode.list partnerIdDecoder)
-        |> Json.Decode.Pipeline.optionalAt [ "node", "image" ]
+        |> Json.Decode.Pipeline.optional "image"
             Json.Decode.string
             ""
     )

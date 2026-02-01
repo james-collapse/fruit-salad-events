@@ -8,12 +8,14 @@ module Route.Blog exposing (Model, Msg, RouteParams, route, Data, ActionData)
 
 import BackendTask
 import Copy.Keys exposing (Key(..))
+import Copy.Text exposing (t)
+import Data.PlaceCal.Articles
 import FatalError
 import Head
-import Html.Styled
 import PagesMsg
 import RouteBuilder
 import Shared
+import Theme.Page.Blog
 import Theme.PageTemplate
 import View
 
@@ -64,7 +66,20 @@ view :
     RouteBuilder.App Data ActionData RouteParams
     -> Shared.Model
     -> View.View (PagesMsg.PagesMsg Msg)
-view app shared =
-    { title = "Blog"
-    , body = [ Html.Styled.h2 [] [ Html.Styled.text "New Page" ] ]
+view app _ =
+    { title = t (PageMetaTitle (t BlogTitle))
+    , body =
+        [ Theme.PageTemplate.view
+            { headerType = Just "pink"
+            , title = t BlogTitle
+            , bigText = { text = t BlogDescription, node = "h3" }
+            , smallText = Nothing
+            , innerContent = Nothing
+            , outerContent =
+                Just
+                    (Theme.Page.Blog.viewNewsList
+                        (Data.PlaceCal.Articles.replacePartnerIdWithName app.sharedData.articles app.sharedData.partners)
+                    )
+            }
+        ]
     }

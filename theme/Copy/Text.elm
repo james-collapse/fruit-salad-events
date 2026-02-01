@@ -310,13 +310,13 @@ t key =
             "Blog"
 
         BlogEmptyText ->
-            "There are no recent posts"
+            "No recent posts, check back for updates!"
 
         BlogItemReadMore ->
             "Read the rest"
 
         BlogDescription ->
-            "Updates & articles from our partners."
+            "Updates & articles from our partners"
 
         --- Blog Single Article Page
         BlogItemTitle prefix title ->
