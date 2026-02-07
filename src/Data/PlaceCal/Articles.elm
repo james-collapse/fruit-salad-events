@@ -46,7 +46,7 @@ articlesData =
         (List.map
             (\partnershipTagInt ->
                 Data.PlaceCal.Api.fetchAndCachePlaceCalData
-                    "articles"
+                    ("articles-" ++ String.fromInt partnershipTagInt)
                     (allArticlesQuery (String.fromInt partnershipTagInt))
                     articlesDecoder
             )
@@ -60,9 +60,10 @@ articlesData =
 
 sortArticlesByDate : List Article -> List Article
 sortArticlesByDate articles =
-    List.sortBy
-        (\article -> Time.posixToMillis article.publishedDatetime)
-        articles
+    List.reverse <|
+        List.sortBy
+            (\article -> Time.posixToMillis article.publishedDatetime)
+            articles
 
 
 allArticlesQuery : String -> Json.Encode.Value
