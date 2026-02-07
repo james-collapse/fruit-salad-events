@@ -197,10 +197,9 @@ singleEventData eventId =
 
 sortEventsByDate : List Event -> List Event
 sortEventsByDate events =
-    List.reverse <|
-        List.sortBy
-            (\event -> Time.posixToMillis event.startDatetime)
-            events
+    List.sortBy
+        (\event -> Time.posixToMillis event.startDatetime)
+        events
 
 
 allEventsQuery : String -> Json.Encode.Value
