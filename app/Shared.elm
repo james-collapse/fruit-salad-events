@@ -78,7 +78,7 @@ init :
             , pageUrl : Maybe PageUrl
             }
     -> ( Model, Effect Msg )
-init flags maybePagePath =
+init _ maybePagePath =
     ( { showMobileMenu = False
       , filterParam = filterFromPath maybePagePath
       , timezone = Time.utc
@@ -140,6 +140,12 @@ update msg model =
                     baseUpdate
 
                 Just (Route.Partners__Partner_ _) ->
+                    baseUpdate
+
+                Just (Route.Blog__Article_ _) ->
+                    baseUpdate
+
+                Just Route.Blog ->
                     baseUpdate
 
                 Just Route.About ->
