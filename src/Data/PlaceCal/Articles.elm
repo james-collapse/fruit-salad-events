@@ -114,14 +114,6 @@ decode =
         |> Json.Decode.andThen (\article -> addStockImage article)
 
 
-sortArticlesByDate : List Article -> List Article
-sortArticlesByDate articles =
-    List.reverse <|
-        List.sortBy
-            (\article -> Time.posixToMillis article.publishedDatetime)
-            articles
-
-
 partnerIdDecoder : Json.Decode.Decoder String
 partnerIdDecoder =
     Json.Decode.succeed ProviderId

@@ -382,6 +382,3 @@ t key =
 
         IndexIntroMessage ->
             t PartnershipDescription
-
-        PartnerMetaDescription partnerName partnerSummary ->
-            partnerName ++ " - " ++ partnerSummary
