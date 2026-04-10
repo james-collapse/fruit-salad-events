@@ -229,6 +229,9 @@ t key =
         PartnerTitle partnerName ->
             partnerName
 
+        PartnerMetaDescription partnerName partnerSummary ->
+            partnerName ++ " - " ++ partnerSummary
+
         PartnerContactsHeading ->
             "Get in touch"
 

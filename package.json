@@ -3,8 +3,8 @@
   "type": "module",
   "scripts": {
     "postinstall": "elm-tooling install",
-    "start": "elm-constants && elm-pages dev --port 3030",
-    "build": "FROM_DATE=\"$(date -u -d '-1 month' '+%Y-%m-%d 00:00')\" TO_DATE=\"$(date -u -d '+6 months' '+%Y-%m-%d 00:00')\" elm-constants && elm-pages build",
+    "start": "node scripts/set-build-dates.mjs elm-constants && elm-pages dev --port 3030",
+    "build": "node scripts/set-build-dates.mjs",
     "format": "elm-format src tests",
     "review": "elm-review src app",
     "review-fix": "elm-review --fix src app",
@@ -17,15 +17,15 @@
     ]
   },
   "devDependencies": {
-    "elm-codegen": "^0.5.3",
+    "elm-codegen": "^0.6.3",
     "elm-constants": "^1.0.0",
     "elm-optimize-level-2": "^0.3.5",
-    "elm-pages": "^3.0.14",
+    "elm-pages": "^3.0.28",
     "elm-review": "^2.12.0",
     "elm-tooling": "^1.15.1",
     "husky": "^9.1.7",
     "lamdera": "^0.19.1-1.2.1-1",
-    "lint-staged": "^15.4.2",
-    "vite": "^5.3.3"
+    "lint-staged": "^16.3.3",
+    "vite": "^8.0.0"
   }
 }

@@ -1,4 +1,4 @@
-module Data.PlaceCal.Events exposing (Event, EventLocation, EventPartner, EventPartnerContact, Geo, afterDate, eventFromSlug, eventPartnerFromId, eventsData, eventsFromRegionId, eventsOnDate, eventsWithPartners, nextEventStartTime, nextNEvents, onOrBeforeDate, singleEventData)
+module Data.PlaceCal.Events exposing (Event, EventLocation, EventPartner, EventPartnerContact, Geo, afterDate, eventFromSlug, eventPartnerFromId, eventsData, eventsFromRegionId, eventsOnDate, eventsWithPartners, nextEventStartTime, nextNEvents, onOrBeforeDate)
 
 import BackendTask
 import BackendTask.Custom
@@ -187,14 +187,6 @@ eventsData =
         |> BackendTask.map (\eventList -> { allEvents = eventList })
 
 
-singleEventData : String -> BackendTask.BackendTask { fatal : FatalError.FatalError, recoverable : BackendTask.Custom.Error } Event
-singleEventData eventId =
-    Data.PlaceCal.Api.fetchSinglePlaceCalData
-        eventId
-        (singleEventQuery eventId)
-        (singleEventDecoder 0)
-
-
 sortEventsByDate : List Event -> List Event
 sortEventsByDate events =
     List.sortBy
@@ -213,55 +205,8 @@ allEventsQuery partnershipTag =
                     ++ Constants.fromDate
                     ++ "\", toDate: \""
                     ++ Constants.toDate
-                    ++ """") {
-              id
-              name
-              summary
-              description
-              startDate
-              endDate
-              publisherUrl
-              address { streetAddress, postalCode, geo { latitude, longitude } }
-              organizer { id }
-            } }
-            """
+                    ++ "\") { id name summary description startDate endDate publisherUrl address { streetAddress, postalCode, geo { latitude, longitude } } organizer { id } } }"
                 )
-          )
-        ]
-
-
-singleEventQuery : String -> Json.Encode.Value
-singleEventQuery eventId =
-    Json.Encode.object
-        [ ( "query"
-          , Json.Encode.string
-                """
-                query Event($id: ID!) {
-                  event(id: $id) {
-                    id
-                    name
-                    summary
-                    description
-                    startDate
-                    endDate
-                    publisherUrl
-                    address {
-                      streetAddress
-                      postalCode
-                      addressLocality
-                      addressRegion
-                    }
-                    organizer {
-                      id
-                      name
-                    }
-                  }
-                }
-                """
-          )
-        , ( "variables"
-          , Json.Encode.object
-                [ ( "id", Json.Encode.string eventId ) ]
           )
         ]
 
@@ -270,11 +215,6 @@ eventsDecoder : Int -> Json.Decode.Decoder AllEventsResponse
 eventsDecoder partnershipTagInt =
     Json.Decode.succeed AllEventsResponse
         |> Json.Decode.Pipeline.requiredAt [ "data", "eventsByFilter" ] (Json.Decode.list (decodeEvent partnershipTagInt))
-
-
-singleEventDecoder : Int -> Json.Decode.Decoder Event
-singleEventDecoder partnershipTagInt =
-    Json.Decode.at [ "data", "event" ] (decodeEvent partnershipTagInt)
 
 
 decodeEvent : Int -> Json.Decode.Decoder Event

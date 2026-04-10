@@ -53,8 +53,8 @@ type alias ActionData =
 
 data : RouteParams -> BackendTask.BackendTask FatalError.FatalError Data
 data { event } =
-    Data.PlaceCal.Events.singleEventData
-        event
+    Data.PlaceCal.Events.eventsData
+        |> BackendTask.map (\eventsResponse -> Data.PlaceCal.Events.eventFromSlug event eventsResponse.allEvents)
         |> BackendTask.allowFatal
 
 

@@ -4,7 +4,10 @@ import fs from 'node:fs/promises';
 import { constants } from 'node:fs';
 import fetch from 'make-fetch-happen';
 
-
+const fetchOpts = {
+  retry: { retries: 3, minTimeout: 1000 },
+  timeout: 30000
+};
 
 async function fetchAndCachePlaceCalData(config, context) {
   let placeCalData = null;
@@ -23,50 +26,26 @@ async function fetchAndCachePlaceCalData(config, context) {
     const response = await fetch(config.url, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ query: config.query.query })
+      body: JSON.stringify({ query: config.query.query }),
+      ...fetchOpts
     });
 
-    if (response.ok) {
-      const collectionJson = await response.json();
-      await fs.writeFile(cachePath, JSON.stringify(collectionJson));
-      placeCalData = collectionJson;
-    } else {
+    if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
+
+    const collectionJson = await response.json();
+
+    if (collectionJson.errors) {
+      throw new Error(`GraphQL errors: ${JSON.stringify(collectionJson.errors)}`);
+    }
+
+    await fs.writeFile(cachePath, JSON.stringify(collectionJson));
+    placeCalData = collectionJson;
   }
   return placeCalData;
 }
 
-async function fetchSinglePlaceCalData(config, context) {
-  try {
-    const collectionJson = await query(config.url, config.query.query, config.query.variables)
-    return collectionJson;
-  } catch (_error) {
-    console.error(_error)
-  }
-}
-
-
-function query(endPoint, query, variables) {
-  return new Promise((resolve, reject) => {
-    fetch(endPoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        variables,
-        query
-      })
-    })
-      .then(r => r.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err));
-  });
-}
-
 export {
-  fetchAndCachePlaceCalData,
-  fetchSinglePlaceCalData
+  fetchAndCachePlaceCalData
 };
