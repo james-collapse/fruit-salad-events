@@ -63,7 +63,7 @@ head app =
     Theme.PageTemplate.pageMetaTags
         { title = BlogItemTitle NoPrefix article.title
         , description =
-            BlogItemMetaDescription (Data.PlaceCal.Articles.summaryFromArticleBody article.body) (String.join " & " article.partnerIds)
+            BlogItemMetaDescription (Data.PlaceCal.Articles.plainTextSummaryFromArticleBody article.body) (String.join " & " article.partnerIds)
         , imageSrc = Just article.imageSrc
         }
 

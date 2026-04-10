@@ -56,7 +56,7 @@ viewNewsArticle newsItem =
                     text ""
                 , time [] [ text (TransDate.humanDateFromPosix newsItem.publishedDatetime) ]
                 ]
-            , p [ css [ newsItemSummaryStyle ] ] [ text (Data.PlaceCal.Articles.summaryFromArticleBody newsItem.body) ]
+            , div [ css [ newsItemSummaryStyle ] ] (Data.PlaceCal.Articles.summaryFromArticleBody newsItem.body)
             ]
         , div [ css [ buttonFloatingWrapperStyle, width (calc (pct 100) minus (rem 2)) ] ]
             [ a
@@ -167,5 +167,5 @@ newsItemSummaryStyle =
     batch
         [ textAlign center
         , marginTop (rem 0.5)
-        , withMediaTabletPortraitUp [ textAlign left, fontSize (rem 1.2) ]
+        , withMediaTabletPortraitUp [ textAlign left, fontSize (rem 1.0) ]
         ]

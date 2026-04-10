@@ -1,4 +1,4 @@
-module Data.PlaceCal.Articles exposing (Article, articleFromSlug, articlesData, replacePartnerIdWithName, summaryFromArticleBody)
+module Data.PlaceCal.Articles exposing (Article, articleFromSlug, articlesData, plainTextSummaryFromArticleBody, replacePartnerIdWithName, summaryFromArticleBody)
 
 import Array
 import BackendTask
@@ -9,9 +9,11 @@ import Data.PlaceCal.Partners
 import FatalError
 import Helpers.TransDate
 import Helpers.TransRoutes
+import Html.Styled
 import Json.Decode
 import Json.Decode.Pipeline
 import Json.Encode
+import Theme.TransMarkdown
 import Time
 
 
@@ -179,8 +181,18 @@ articleFromSlug slug allArticles allPartners =
         |> Maybe.withDefault emptyArticle
 
 
-summaryFromArticleBody : String -> String
+plainTextSummaryFromArticleBody : String -> String
+plainTextSummaryFromArticleBody articleBody =
+    articleBodySummarySnippet articleBody
+
+
+summaryFromArticleBody : String -> List (Html.Styled.Html msg)
 summaryFromArticleBody articleBody =
+    Theme.TransMarkdown.markdownToHtml (articleBodySummarySnippet articleBody)
+
+
+articleBodySummarySnippet : String -> String
+articleBodySummarySnippet articleBody =
     String.words articleBody
         |> List.take 20
         |> String.join " "
