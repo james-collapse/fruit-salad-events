@@ -17,7 +17,7 @@ import UrlPath exposing (UrlPath)
 
 headerNavigationItems : List TransRoutes.Route
 headerNavigationItems =
-    [ Home, Events, Partners, Blog, About ]
+    [ Home, Events, Partners, Blog, About, JoinUs ]
 
 
 viewPageHeader :
